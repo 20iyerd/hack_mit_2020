@@ -1,91 +1,101 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'backdrop.dart';
 
-class CreateFirst extends StatelessWidget {
-  //immutable widget which doesn't change state
+
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUpPage> {
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _schoolController = TextEditingController();
+  final _pwController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    //required method by stateless widgets as well
+    return Scaffold( //organize into scaffold
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          children: <Widget>[
+            SizedBox(height: 80.0),
+            Column(
+              children: <Widget>[
+                Image.asset('assets/earth.png'), //display custom logo
+                SizedBox(height: 16.0), //spacing for aesthetics
+                Text('Login'),
+              ],
+            ),
+            SizedBox(height: 120.0), //spacing for aesthetics
+            TextField(
+              //add a controller to authenticate and clear text
+              controller: _firstNameController,
+              autofocus: true,
+              decoration: InputDecoration(
+                filled: true,
+                labelText: "First Name:",
+              ),
+            ),
 
-    return Backdrop(
-      frontLayer: Center(
-        // CustomScrollView(
-//          slivers: <Widget>[
-//            SliverAppBar(
-//              expandedHeight: 200,
-//              flexibleSpace: const FlexibleSpaceBar(
-//                title: Text(
-//                  "Welcome, User!",
-//                  textAlign: TextAlign.center,
-//                ),
-//              ),
-//              actions: <Widget>[
-//              ],
-//              pinned: false,
-//              floating: false,
-//              snap: false,
-//            ),
-//          ],
-//        ),
-//    ============================================================================
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 300,
+            SizedBox(
+              height: 12.0,
+            ),
+
+            TextField(
+              controller: _lastNameController,
+              //add a controller to authenticate and clear text
+              obscureText: true, //make sure password isn't visible
+              autofocus: true,
+              decoration: InputDecoration(
+                filled: true,
+                labelText: "Last Name:",
               ),
-              Text(
-                "Welcome, User!",
-                style: Theme.of(context).textTheme.display1,
-                textAlign: TextAlign.center,
+            ),
+
+            FlatButton(
+              child: Text(
+                "Create a new account",
+                style: Theme.of(context).textTheme.button,
               ),
-              SizedBox(
-                height: 45,
-              ),
-              Icon(
-                Icons.arrow_downward,
-                size: 60,
-                color: Colors.blueGrey[200],
-              ),
-              SizedBox(
-                height: 800,
-              ),
-              Card(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "What's new:",
-                      style: Theme.of(context).textTheme.headline,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      "No new updates to show.",
-                      style: Theme.of(context).textTheme.body1,
-                    )
-                  ],
+              onPressed: (){
+                Navigator.pushNamed(context, '/signup');
+              },
+            ),
+
+            SizedBox(height: 24.0),
+
+            ButtonBar(
+              children: <Widget>[
+                FlatButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    _firstNameController.clear();
+                    _lastNameController.clear();
+                  },
                 ),
-                color: Colors.blueGrey[200],
-              ),
-              SizedBox(
-                height: 800,
-              )
-            ],
-          ),
+                RaisedButton(
+                  color: Colors.blue,
+                  child: Text(
+                    "Next",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    if (_firstNameController.text.length != 0 && //TODO: implement auth
+                        _lastNameController.text.length != 0) {
+                      Navigator.pushNamed(context, '/home');
+                    }
+                  },
+                )
+              ],
+            ),
+          ],
         ),
       ),
-      backLayer: Container(
-        color: Colors.blueGrey[100],
-      ),
-      frontTitle: Text("Create an account here"),
-      backTitle: Text("Welcome"),
     );
   }
 }

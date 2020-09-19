@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'backdrop.dart';
 import 'home.dart';
+import 'signup.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -132,6 +133,7 @@ class _AppState extends State<MyApp> {
         //generate routes to store in stack
         '/login': (BuildContext context) => new LoginPage(),
         '/home': (BuildContext context) => new HomePage(),
+        '/signup': (BuildContext context) => new SignUpPage(),
         // '/menu': (BuildContext context) => new LeftMenu(),
         // '/profile': (BuildContext context) => new ProfilePage(),
         // '/users': (BuildContext context) => new UsersPage(),

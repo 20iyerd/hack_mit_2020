@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: (){
-                Navigator.pushNamed(context, "/createFirst");
+                Navigator.pushNamed(context, '/signup');
               },
             ),
 
