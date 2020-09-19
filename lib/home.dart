@@ -104,7 +104,7 @@ class Matches extends StatefulWidget {
 }
 
 class _MatchesState extends State<Matches> {
-  String profile;
+  //String profile;
   @override
   Widget build(BuildContext context){
     return Stack(
@@ -114,8 +114,9 @@ class _MatchesState extends State<Matches> {
           child: Container(
             height: 600,
             width: 350,
-            child: Text(
-              profile
+            child: SizedBox(
+              height: 100,
+              
             ),
           )
         )
