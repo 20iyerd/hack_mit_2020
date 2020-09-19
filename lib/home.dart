@@ -38,29 +38,52 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 300,
+                height: 280,
               ),
-              Text(
-                "Welcome to BridgeGap!",
-                style: Theme.of(context).textTheme.display1,
-                textAlign: TextAlign.center,
+              Padding(
+                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
+                child: Text('Welcome to BridgeGap!',
+                    style: Theme.of(context).textTheme.display1,
+                    textAlign: TextAlign.center),
               ),
+              // Text(
+              //   "Welcome to BridgeGap!",
+              //   style: Theme.of(context).textTheme.display1,
+              //   textAlign: TextAlign.center,
+              // ),
               SizedBox(
-                height: 45,
+                height: 40,
               ),
-              RaisedButton(
-                color: Colors.green,
-                child: Text(
-                  "Get Matched",
-                  style: TextStyle(color: Colors.white),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(90,0,90,0),
+                child:RaisedButton(
+                  color: Colors.green,
+                  child: Text(
+                    "Get Matched",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Matches()),
+                    );
+                  },
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Matches()),
-                  );
-                },
               ),
+              // RaisedButton(
+              //   color: Colors.green,
+              //   child: Text(
+              //     "Get Matched",
+              //     style: TextStyle(color: Colors.white),
+              //   ),
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => Matches()),
+              //     );
+              //   },
+              // ),
               SizedBox(
                 height: 800,
               ),
