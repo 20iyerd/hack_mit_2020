@@ -28,7 +28,7 @@ class _SignUpState extends State<SignUpPage> {
               children: <Widget>[
                 Image.asset('assets/earth.png'), //display custom logo
                 SizedBox(height: 16.0), //spacing for aesthetics
-                Text('Login'),
+                Text('Create a new account'),
               ],
             ),
             SizedBox(height: 120.0), //spacing for aesthetics
@@ -57,16 +57,6 @@ class _SignUpState extends State<SignUpPage> {
               ),
             ),
 
-            FlatButton(
-              child: Text(
-                "Create a new account",
-                style: Theme.of(context).textTheme.button,
-              ),
-              onPressed: (){
-                Navigator.pushNamed(context, '/signup');
-              },
-            ),
-
             SizedBox(height: 24.0),
 
             ButtonBar(
@@ -93,6 +83,16 @@ class _SignUpState extends State<SignUpPage> {
                 )
               ],
             ),
+            RaisedButton(
+              color: Colors.blue,
+              child: Text(
+                "Go Back",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }
+            )
           ],
         ),
       ),
