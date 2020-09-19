@@ -66,14 +66,6 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
           ),
         ),
         ListTile(
-          title: Text('Home'),
-          onTap: () {
-            Navigator.pop(
-                context
-            );
-          },
-        ),
-        ListTile(
           title: Text('Profile'),
           onTap: () {
             Navigator.push(
@@ -92,7 +84,7 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
           },
         ),
         ListTile(
-          title: Text('Other Matches'),
+          title: Text('My Matches'),
           onTap: () {
             Navigator.push(
               context,
@@ -103,10 +95,7 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
       ListTile(
         title: Text('Logout'),
         onTap: () {
-          // Update the state of the app
-          // ...
-          // Then close the drawer
-          Navigator.pop(context);
+          Navigator.pushNamed(context, '/login');
         },
        ),
       ],
@@ -143,6 +132,16 @@ class Profile extends StatefulWidget{
 }
 
 class _ProfileState extends State<Profile> {
+  // student
+ /* String name;
+  String school;
+  String grade;
+  String subjects;
+  String experience;
+  String skills;
+  String preferences; //time, class size, class grade, time commitment
+  // teacher: Name, School, Grade, Subject(s), Preferences (experience, skills time commitment)
+  String classSize; */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -194,7 +193,7 @@ class _OtherMatchesState extends State<OtherMatches> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Other Matches'),
+        title: const Text('My Matches'),
       ),
     );
 
