@@ -66,21 +66,38 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
           ),
         ),
         ListTile(
+          title: Text('Home'),
+          onTap: () {
+            Navigator.pop(
+                context
+            );
+          },
+        ),
+        ListTile(
+          title: Text('Profile'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Profile()),
+            );
+          },
+        ),
+        ListTile(
           title: Text('Dashboard'),
           onTap: () {
-            // Update the state of the app
-            // ...
-            // Then close the drawer
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Dashboard()),
+            );
           },
         ),
         ListTile(
           title: Text('Other Matches'),
           onTap: () {
-            // Update the state of the app
-            // ...
-            // Then close the drawer
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OtherMatches()),
+            );
           },
         ),
       ListTile(
@@ -117,4 +134,69 @@ class Backdrop extends StatefulWidget { //easy accessibility
 
   @override
   _BackdropState createState() => _BackdropState();
+}
+
+class Profile extends StatefulWidget{
+
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      // body contains name, subject, preferences, etc
+    );
+
+  }
+}
+
+class Dashboard extends StatefulWidget{
+
+  @override
+  _DashboardState createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  bool student;
+  @override
+  Widget build(BuildContext context) {
+    if (student == true){
+      return Scaffold(
+      appBar: AppBar(
+        title: const Text('Student Dashboard'),
+      ),
+        // body contains status, teachers matched with
+    );
+    }else {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text("Teacher Dashboard"),
+        ),
+        // body contains students matched with, classes
+      );
+    }
+  }
+}
+
+class OtherMatches extends StatefulWidget{
+
+  @override
+  _OtherMatchesState createState() => _OtherMatchesState();
+}
+
+class _OtherMatchesState extends State<OtherMatches> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Other Matches'),
+      ),
+    );
+
+  }
 }
