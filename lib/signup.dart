@@ -1,6 +1,7 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -13,6 +14,17 @@ class _SignUpState extends State<SignUpPage> {
   final _phoneController = TextEditingController();
   final _schoolController = TextEditingController();
   final _pwController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<UserCredential> _handleSignIn(
+      TextEditingController u, TextEditingController p) async {
+    final UserCredential user = await _auth.createUserWithEmailAndPassword(
+      email: u.text,
+      password: p.text,
+    );
+    return user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +88,18 @@ class Teacher extends StatefulWidget {
 class _TeacherState extends State<Teacher> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<UserCredential> _handleSignIn(
+      TextEditingController u, TextEditingController p) async {
+    final UserCredential user = await _auth.createUserWithEmailAndPassword(
+      email: u.text,
+      password: p.text,
+    );
+    return user;
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold( // creates Scaffold
@@ -137,6 +161,9 @@ class _TeacherState extends State<Teacher> {
                   onPressed: () {
                     if (_firstNameController.text.length != 0 && //TODO: implement auth
                         _lastNameController.text.length != 0) {
+                      _handleSignIn(_firstNameController/*_usernameController*/, _lastNameController/*_passwordController*/)
+                          .then((UserCredential user) => print(user))
+                          .catchError((e) => print(e));
                       Navigator.pushNamed(context, '/home'
                       );
                     }
