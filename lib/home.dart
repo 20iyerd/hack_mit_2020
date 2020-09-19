@@ -110,8 +110,9 @@ class _MatchesState extends State<Matches> {
       alignment: Alignment.center,
       children: <Widget>[
         Card(
-          child: Text(
-            "hi"
+          child: Container(
+            height: 100,
+            width: 100,
           ),
         )
       ],
