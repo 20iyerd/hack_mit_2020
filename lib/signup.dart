@@ -86,8 +86,8 @@ class Teacher extends StatefulWidget {
 }
 
 class _TeacherState extends State<Teacher> {
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -118,11 +118,11 @@ class _TeacherState extends State<Teacher> {
                   SizedBox(height: 120.0), //spacing for aesthetics
                   TextField(
                     //add a controller to authenticate and clear text
-                    controller: _firstNameController,
+                    controller: _emailController,
                     autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
-                      labelText: "First Name:",
+                      labelText: "Email:",
                     ),
                   ),
 
@@ -131,13 +131,13 @@ class _TeacherState extends State<Teacher> {
                   ),
 
                   TextField(
-                    controller: _lastNameController,
+                    controller: _passwordController,
                     //add a controller to authenticate and clear text
                     obscureText: true, //make sure password isn't visible
                     autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
-                      labelText: "Last Name:",
+                      labelText: "Password:",
                     ),
                   ),
 
@@ -148,8 +148,8 @@ class _TeacherState extends State<Teacher> {
                       FlatButton(
                         child: Text("Clear"),
                         onPressed: () {
-                          _firstNameController.clear();
-                          _lastNameController.clear();
+                          _emailController.clear();
+                          _passwordController.clear();
                         },
                       ),
                       RaisedButton(
@@ -159,9 +159,9 @@ class _TeacherState extends State<Teacher> {
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
-                          if (_firstNameController.text.length != 0 && //TODO: implement auth
-                              _lastNameController.text.length != 0) {
-                            _handleSignIn(_firstNameController/*_usernameController*/, _lastNameController/*_passwordController*/)
+                          if (_emailController.text.length != 0 && //TODO: implement auth
+                              _passwordController.text.length != 0) {
+                            _handleSignIn(_emailController/*_usernameController*/, _passwordController/*_passwordController*/)
                                 .then((UserCredential user) => print(user))
                                 .catchError((e) => print(e));
                             Navigator.pushNamed(context, '/home'
@@ -194,8 +194,8 @@ class Student extends StatefulWidget {
 }
 
 class _StudentState extends State<Student> {
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context){
     return Scaffold( // creates Scaffold
@@ -214,11 +214,11 @@ class _StudentState extends State<Student> {
                   SizedBox(height: 120.0), //spacing for aesthetics
                   TextField(
                     //add a controller to authenticate and clear text
-                    controller: _firstNameController,
+                    controller: _emailController,
                     autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
-                      labelText: "First Name:",
+                      labelText: "Email:",
                     ),
                   ),
 
@@ -227,13 +227,13 @@ class _StudentState extends State<Student> {
                   ),
 
                   TextField(
-                    controller: _lastNameController,
+                    controller: _passwordController,
                     //add a controller to authenticate and clear text
                     obscureText: true, //make sure password isn't visible
                     autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
-                      labelText: "Last Name:",
+                      labelText: "Password:",
                     ),
                   ),
 
@@ -244,8 +244,8 @@ class _StudentState extends State<Student> {
                       FlatButton(
                         child: Text("Clear"),
                         onPressed: () {
-                          _firstNameController.clear();
-                          _lastNameController.clear();
+                          _emailController.clear();
+                          _passwordController.clear();
                         },
                       ),
                       RaisedButton(
@@ -255,8 +255,8 @@ class _StudentState extends State<Student> {
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
-                          if (_firstNameController.text.length != 0 && //TODO: implement auth
-                              _lastNameController.text.length != 0) {
+                          if (_emailController.text.length != 0 && //TODO: implement auth
+                              _passwordController.text.length != 0) {
                             Navigator.pushNamed(context, '/home'
                             );
                           }
