@@ -25,12 +25,6 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
       elevation: 0.0,
       titleSpacing: 0.0,
       backgroundColor: Colors.blueGrey,
-      leading: IconButton(
-        icon: Icon(Icons.menu),
-        onPressed: () {
-          Navigator.of(context).pushNamed('/menu'); //navigate to menu
-        },
-      ),
       title: Text('Explore'),
       actions: <Widget>[
         IconButton(
@@ -57,7 +51,68 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
       appBar: appBar,
       // TODO: Return a LayoutBuilder widget (104)
       body: _buildStack(),
-    );
+      drawer: Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+      // Important: Remove any padding from the ListView.
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          child: Text('Menu'),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+        ),
+        ListTile(
+          title: Text('Home'),
+          onTap: () {
+            Navigator.pop(
+                context
+            );
+          },
+        ),
+        ListTile(
+          title: Text('Profile'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Profile()),
+            );
+          },
+        ),
+        ListTile(
+          title: Text('Dashboard'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Dashboard()),
+            );
+          },
+        ),
+        ListTile(
+          title: Text('Other Matches'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OtherMatches()),
+            );
+          },
+        ),
+      ListTile(
+        title: Text('Logout'),
+        onTap: () {
+          // Update the state of the app
+          // ...
+          // Then close the drawer
+          Navigator.pop(context);
+        },
+       ),
+      ],
+    ),
+   ),
+  );
   }
 }
 
@@ -79,4 +134,69 @@ class Backdrop extends StatefulWidget { //easy accessibility
 
   @override
   _BackdropState createState() => _BackdropState();
+}
+
+class Profile extends StatefulWidget{
+
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      // body contains name, subject, preferences, etc
+    );
+
+  }
+}
+
+class Dashboard extends StatefulWidget{
+
+  @override
+  _DashboardState createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  bool student;
+  @override
+  Widget build(BuildContext context) {
+    if (student == true){
+      return Scaffold(
+      appBar: AppBar(
+        title: const Text('Student Dashboard'),
+      ),
+        // body contains status, teachers matched with
+    );
+    }else {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text("Teacher Dashboard"),
+        ),
+        // body contains students matched with, classes
+      );
+    }
+  }
+}
+
+class OtherMatches extends StatefulWidget{
+
+  @override
+  _OtherMatchesState createState() => _OtherMatchesState();
+}
+
+class _OtherMatchesState extends State<OtherMatches> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Other Matches'),
+      ),
+    );
+
+  }
 }

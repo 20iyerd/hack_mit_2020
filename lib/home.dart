@@ -41,17 +41,25 @@ class HomePage extends StatelessWidget {
                 height: 300,
               ),
               Text(
-                "Welcome, User!",
+                "Welcome to BridgeGap!",
                 style: Theme.of(context).textTheme.display1,
                 textAlign: TextAlign.center,
               ),
               SizedBox(
                 height: 45,
               ),
-              Icon(
-                Icons.arrow_downward,
-                size: 60,
-                color: Colors.blueGrey[200],
+              RaisedButton(
+                color: Colors.green,
+                child: Text(
+                  "Get Matched",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Matches()),
+                  );
+                },
               ),
               SizedBox(
                 height: 800,
@@ -86,6 +94,32 @@ class HomePage extends StatelessWidget {
       ),
       frontTitle: Text("Home"),
       backTitle: Text("Welcome"),
+    );
+  }
+}
+
+class Matches extends StatefulWidget {
+  @override
+  _MatchesState createState() => _MatchesState();
+}
+
+class _MatchesState extends State<Matches> {
+  String profile;
+  @override
+  Widget build(BuildContext context){
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Card(
+          child: Container(
+            height: 600,
+            width: 350,
+            child: Text(
+              profile
+            ),
+          )
+        )
+      ],
     );
   }
 }
