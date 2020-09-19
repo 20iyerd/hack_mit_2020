@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "948316724788",
+    "firebase_url": "https://hackmit2020-6cf5e.firebaseio.com",
+    "project_id": "hackmit2020-6cf5e",
+    "storage_bucket": "hackmit2020-6cf5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948316724788:android:f0741f38d737b6a97ab461",
+        "android_client_info": {
+          "package_name": "com.example.hack_mit_2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948316724788-is6hi33746rhbiv97dhickk78aqu80cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hack_mit_2020",
+            "certificate_hash": "8fe9b0c9420e7decb20a4a89c8b8cb8bcaf4825b"
+          }
+        },
+        {
+          "client_id": "948316724788-ga8vbtfsklj3uc2l6lmdqpspg19dri03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU2slEl_7Dv6OL9XpKyjXsiv8yg-3120U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948316724788-ga8vbtfsklj3uc2l6lmdqpspg19dri03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
