@@ -102,14 +102,14 @@ import 'home.dart';
 // }
 
 
-class App extends StatefulWidget {
+class MyApp extends StatefulWidget {
   //center where all pages are handled
 
   @override
   _AppState createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     //required method in stateful widgets
