@@ -116,7 +116,7 @@ class _MatchesState extends State<Matches> {
             width: 350,
             child: SizedBox(
               height: 100,
-              
+
             ),
           )
         )
