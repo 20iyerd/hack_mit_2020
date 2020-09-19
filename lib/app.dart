@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 //
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'login.dart';
 import 'backdrop.dart';
@@ -111,38 +112,56 @@ class MyApp extends StatefulWidget {
 }
 
 class _AppState extends State<MyApp> {
+
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     //required method in stateful widgets
-    return MaterialApp(
-      title: 'App',
-      // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
-      home: Backdrop(
-          frontLayer: HomePage(),
-          backLayer: Container(
-            color: Colors.blueGrey[100],
-          ),
-          frontTitle: Text('Find someone to help'),
-          backTitle: Text('menu')),
-      // TODO: Make currentCategory field take _currentCategory (104)
-      // TODO: Pass _currentCategory for frontLayer (104)
-      // TODO: Change backLayer field value to CategoryMenuPage (104)
-      initialRoute: '/login',
-      onGenerateRoute: _getRoute,
-      routes: <String, WidgetBuilder>{
-        //generate routes to store in stack
-        '/login': (BuildContext context) => new LoginPage(),
-        '/home': (BuildContext context) => new HomePage(),
-        '/signup': (BuildContext context) => new SignUpPage(),
-        // '/menu': (BuildContext context) => new LeftMenu(),
-        // '/profile': (BuildContext context) => new ProfilePage(),
-        // '/users': (BuildContext context) => new UsersPage(),
-        // '/createFirst': (BuildContext context) => new CreateAccountFirst(),
-        // '/createSecond': (BuildContext context) => new CreateAccountSecond(),
-        // '/createThird': (BuildContext context) => new CreateAccountThird(),
-        // '/message': (BuildContext context) => new Messaging(),
-      },
+    return FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot) {
+      // Check for errors
+      if (snapshot.hasError) {
+        return Text("something went wrong");
+      }
+      // Once complete, show your application
+      if (snapshot.connectionState == ConnectionState.done) {
+        return MaterialApp(
+          title: 'App',
+          // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
+          home: Backdrop(
+              frontLayer: HomePage(),
+              backLayer: Container(
+                color: Colors.blueGrey[100],
+              ),
+              frontTitle: Text('Find someone to help'),
+              backTitle: Text('menu')),
+          // TODO: Make currentCategory field take _currentCategory (104)
+          // TODO: Pass _currentCategory for frontLayer (104)
+          // TODO: Change backLayer field value to CategoryMenuPage (104)
+          initialRoute: '/login',
+          onGenerateRoute: _getRoute,
+          routes: <String, WidgetBuilder>{
+            //generate routes to store in stack
+            '/login': (BuildContext context) => new LoginPage(),
+            '/home': (BuildContext context) => new HomePage(),
+            '/signup': (BuildContext context) => new SignUpPage(),
+            // '/menu': (BuildContext context) => new LeftMenu(),
+            // '/profile': (BuildContext context) => new ProfilePage(),
+            // '/users': (BuildContext context) => new UsersPage(),
+            // '/createFirst': (BuildContext context) => new CreateAccountFirst(),
+            // '/createSecond': (BuildContext context) => new CreateAccountSecond(),
+            // '/createThird': (BuildContext context) => new CreateAccountThird(),
+            // '/message': (BuildContext context) => new Messaging(),
+          },
+        );
+      }
+        return Text("loading");
+      }
     );
+
+
   }
 
   Route<dynamic> _getRoute(RouteSettings settings) {
