@@ -27,28 +27,28 @@ class Algorithm {
         classBegin.isAtSameMomentAs(studentBegin))
         && (classEnd.isBefore(studentEnd) ||
             classEnd.isAtSameMomentAs(studentEnd))) {
-      time = 1;
+      time = 1.0;
     }
     else if ((classBegin.isAfter(studentBegin) ||
         (classBegin.isAtSameMomentAs(studentBegin)))
         && classEnd.isAfter(studentEnd)) {
-      time = (24 - classEnd
+      time = (24.0 - classEnd
           .difference(studentEnd)
-          .inHours) / 24;
+          .inHours) / 24.0;
     }
     else if (classBegin.isBefore(studentBegin) &&
         (classEnd.isBefore(studentEnd) ||
             classEnd.isAtSameMomentAs(studentEnd))) {
-      time = (24 - studentBegin
+      time = (24.0 - studentBegin
           .difference(classBegin)
-          .inHours) / 24;
+          .inHours) / 24.0;
     }
     else {
-      time = (24 - studentBegin
+      time = (24.0 - studentBegin
           .difference(classBegin)
           .inHours - classEnd
           .difference(studentEnd)
-          .inHours) / 24;
+          .inHours) / 24.0;
     }
     return time;
   }
@@ -70,7 +70,7 @@ class Algorithm {
 
   // class size match score
   double sizeMatch(int teacherClassSize, int studentPreference){
-    size = (3 - (teacherClassSize.toDouble() - studentPreference.toDouble()).abs())/3;
+    size = (3.0 - (teacherClassSize.toDouble() - studentPreference.toDouble()).abs())/3.0;
     return size;
   }
 
@@ -78,13 +78,13 @@ class Algorithm {
   //
   double gradeMatch(int teacherGrade, int studentMinGrade, int studentMaxGrade){
     if ((teacherGrade >= studentMinGrade) && (teacherGrade <= studentMaxGrade)){
-      grade = 1;
+      grade = 1.0;
     }
     else if (teacherGrade > studentMaxGrade){
-      grade = (12 - teacherGrade + studentMaxGrade)/12;
+      grade = (12.0 - teacherGrade + studentMaxGrade)/12.0;
     }
     else{
-      grade = (12 - studentMinGrade + teacherGrade)/12;
+      grade = (12.0 - studentMinGrade + teacherGrade)/12.0;
     }
     return grade;
   }
@@ -107,7 +107,7 @@ class Algorithm {
   // experience levels: no preference, none, 1-2, 3-4, 4+ scored 0, 1, 2, 3, 4
   double experienceMatch(int teacherPreference, int studentExperience){
     if (teacherPreference == 0 || (studentExperience >= teacherPreference)) {
-      experience = 1;
+      experience = 1.0;
     }
     else {
       experience = (teacherPreference.toDouble() - studentExperience.toDouble())/teacherPreference;
@@ -118,7 +118,7 @@ class Algorithm {
   // hours student has available matched to hours in classroom required
   // hours options: 0-10, 10-20, 20-30, 30+ scored 0, 1, 2, 3 respectively
   double hoursMatch(int teacherHours, int studentHours){
-    hours = (3 - (teacherHours.toDouble() - studentHours.toDouble()).abs())/3;
+    hours = (3.0 - (teacherHours.toDouble() - studentHours.toDouble()).abs())/3.0;
     return hours;
   }
 
