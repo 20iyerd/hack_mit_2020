@@ -198,12 +198,15 @@ class _TeacherState1 extends State<Teacher1> {
   final formKeySub = new GlobalKey<FormState>();
   final formKeySki = new GlobalKey<FormState>();
 
-  String _timeZone = 'UTC';
-  String _startTime = '2012-02-27 00:00:00';
+  String _timeZone = '+0000';
+  String _startTime = '';
   bool _startTimeAM = true;
-  String _endTime = '2012-02-27 00:00:00';
+  String _endTime = '';
   bool _endTimeAM = true;
-  double _classDuration = 0; // in minutes
+  String _date = '2012-02-07';
+  DateTime startDateTime;
+  DateTime endDateTime;
+
   int _grade = 0;
   int _classSize = 0;
   List _subjectsList = [];
@@ -497,131 +500,131 @@ class _TeacherState1 extends State<Teacher1> {
                                 items: [
                                   DropdownMenuItem(
                                       child: Text("GMT"),
-                                      value: 'GMT'
+                                      value: '+0000GMT'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("UTC"),
-                                      value: 'UTC'
+                                      value: '+0000UTC'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ECT"),
-                                      value: 'ECT'
+                                      value: '+0100'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EET"),
-                                      value: 'EET'
+                                      value: '+0200'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ART"),
-                                      value: 'ART'
+                                      value: '+0200'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EAT"),
-                                      value: 'EAT'
+                                      value: '+0300'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("MET"),
-                                      value: 'MET'
+                                      value: '+0300MET'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("NET"),
-                                      value: 'NET'
+                                      value: '+0400'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PLT"),
-                                      value: 'PLT'
+                                      value: '+0500'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("IST"),
-                                      value: 'IST'
+                                      value: '+0530'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("BST"),
-                                      value: 'BST'
+                                      value: '+0600'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("VST"),
-                                      value: 'VST'
+                                      value: '+0700'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CTT"),
-                                      value: 'CTT'
+                                      value: '+0800'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("JST"),
-                                      value: 'JST'
+                                      value: '+0900'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ACT"),
-                                      value: 'ACT'
+                                      value: '+0930'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("AET"),
-                                      value: 'AET'
+                                      value: '+1000'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("SST"),
-                                      value: 'SST'
+                                      value: '+1100'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("NST"),
-                                      value: 'NST'
+                                      value: '+1200'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("MIT"),
-                                      value: 'MIT'
+                                      value: '-1100'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("HST"),
-                                      value: 'HST'
+                                      value: '-1000'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("AST"),
-                                      value: 'AST'
+                                      value: '-0900'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PST"),
-                                      value: 'PST'
+                                      value: '-0800'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PNT"),
-                                      value: 'PNT'
+                                      value: '-0700'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("MST"),
-                                      value: 'MST'
+                                      value: '0700MST'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CST"),
-                                      value: 'CST'
+                                      value: '-0600'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EST"),
-                                      value: 'EST'
+                                      value: '-0500'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("IET"),
-                                      value: 'IET'
+                                      value: '-0500IET'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PRT"),
-                                      value: 'PRT'
+                                      value: '-0400'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CNT"),
-                                      value: 'CNT'
+                                      value: '-0330'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("AGT"),
-                                      value: 'AGT'
+                                      value: '-0300'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("BET"),
-                                      value: 'BET'
+                                      value: '-0300BET'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CAT"),
-                                      value: 'CAT'
+                                      value: '-0100'
                                   )
                                 ],
                                 onChanged: (value) {
@@ -897,6 +900,21 @@ class _TeacherState1 extends State<Teacher1> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
+
+                        if (_startTime == '1200'){
+                          _startTime = '0000';
+                        }// noon
+                        if (_endTime == '1200'){
+                          _endTime = '0000';
+                        }
+                        if (_startTimeAM){
+                          _startTime = (int.parse('_startTime') + 1200).toString();
+                        }
+                        if (_endTimeAM){
+                          _endTime = (int.parse('_endTime')+1200).toString();
+                        }
+                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
+                        endDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
                         Navigator.pushNamed(context, '/home');
                       }
                   ),
@@ -1042,12 +1060,15 @@ class _StudentState1 extends State<Student1> {
   final formKeySub = new GlobalKey<FormState>();
   final formKeySki = new GlobalKey<FormState>();
 
-  String _timeZone = 'UTC';
-  String _startTime = '2012-02-27 00:00:00';
+  String _timeZone = '+0000';
+  String _startTime = '';
   bool _startTimeAM = true;
-  String _endTime = '2012-02-27 00:00:00';
+  String _endTime = '';
   bool _endTimeAM = true;
-  double _classDuration = 0; // in minutes
+  String _date = '2012-02-07';
+  DateTime startDateTime;
+  DateTime endDateTime;
+
   int _gradeMin = 0;
   int _gradeMax = 0;
   int _classSize = 0;
@@ -1058,8 +1079,12 @@ class _StudentState1 extends State<Student1> {
   int _experience = 0;
   int _hours = 0;
   bool _status = false;
-  String _firstName = '';
+  String _firstName = ''; // not sure how to get these
   String _lastName = '';
+
+  // things to send to firebase bc they'll be used in algorithm
+  String fullName; // _firstName + _lastName
+
 
   String _handleSubmitted(String selectedGroup, String name, String bio) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -1408,131 +1433,131 @@ class _StudentState1 extends State<Student1> {
                                 items: [
                                   DropdownMenuItem(
                                       child: Text("GMT"),
-                                      value: 'GMT'
+                                      value: '+0000GMT'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("UTC"),
-                                      value: 'UTC'
+                                      value: '+0000UTC'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ECT"),
-                                      value: 'ECT'
+                                      value: '+0100'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EET"),
-                                      value: 'EET'
+                                      value: '+0200'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ART"),
-                                      value: 'ART'
+                                      value: '+0200'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EAT"),
-                                      value: 'EAT'
+                                      value: '+0300'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("MET"),
-                                      value: 'MET'
+                                      value: '+0300MET'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("NET"),
-                                      value: 'NET'
+                                      value: '+0400'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PLT"),
-                                      value: 'PLT'
+                                      value: '+0500'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("IST"),
-                                      value: 'IST'
+                                      value: '+0530'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("BST"),
-                                      value: 'BST'
+                                      value: '+0600'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("VST"),
-                                      value: 'VST'
+                                      value: '+0700'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CTT"),
-                                      value: 'CTT'
+                                      value: '+0800'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("JST"),
-                                      value: 'JST'
+                                      value: '+0900'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ACT"),
-                                      value: 'ACT'
+                                      value: '+0930'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("AET"),
-                                      value: 'AET'
+                                      value: '+1000'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("SST"),
-                                      value: 'SST'
+                                      value: '+1100'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("NST"),
-                                      value: 'NST'
+                                      value: '+1200'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("MIT"),
-                                      value: 'MIT'
+                                      value: '-1100'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("HST"),
-                                      value: 'HST'
+                                      value: '-1000'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("AST"),
-                                      value: 'AST'
+                                      value: '-0900'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PST"),
-                                      value: 'PST'
+                                      value: '-0800'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PNT"),
-                                      value: 'PNT'
+                                      value: '-0700'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("MST"),
-                                      value: 'MST'
+                                      value: '0700MST'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CST"),
-                                      value: 'CST'
+                                      value: '-0600'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EST"),
-                                      value: 'EST'
+                                      value: '-0500'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("IET"),
-                                      value: 'IET'
+                                      value: '-0500IET'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("PRT"),
-                                      value: 'PRT'
+                                      value: '-0400'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CNT"),
-                                      value: 'CNT'
+                                      value: '-0330'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("AGT"),
-                                      value: 'AGT'
+                                      value: '-0300'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("BET"),
-                                      value: 'BET'
+                                      value: '-0300BET'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("CAT"),
-                                      value: 'CAT'
+                                      value: '-0100'
                                   )
                                 ],
                                 onChanged: (value) {
@@ -1823,13 +1848,27 @@ class _StudentState1 extends State<Student1> {
                       }
                   ),
 
-                  RaisedButton(
+                  RaisedButton( // I'm gonna do all my calculations here
                       color: Colors.blue,
                       child: Text(
                         "Submit",
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
+                        if (_startTime == '1200'){
+                          _startTime = '0000';
+                        }// noon
+                        if (_endTime == '1200'){
+                          _endTime = '0000';
+                        }
+                        if (_startTimeAM){
+                          _startTime = (int.parse('_startTime') + 1200).toString();
+                        }
+                        if (_endTimeAM){
+                          _endTime = (int.parse('_endTime')+1200).toString();
+                        }
+                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
+                        endDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
                         Navigator.pushNamed(context, '/home');
                       }
                   ),
@@ -1849,4 +1888,5 @@ class _StudentState1 extends State<Student1> {
         )
     );
   }
+
 }
