@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class _BackdropState extends State<Backdrop> //added backdrop for added functionality, especially with layers
     with SingleTickerProviderStateMixin {
@@ -144,35 +145,193 @@ class _ProfileState extends State<Profile> {
   String classSize; */
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
-      // body contains name, subject, preferences, etc
-      body: Center(
-        child: Column(children: <Widget>[
-          SizedBox(
-            height:40,
+    final ThemeData theme = Theme.of(context);
+    final DocumentSnapshot args = ModalRoute.of(context).settings.arguments;
+    return _buildProfile(context, theme, args);
+  }
+  Widget _buildProfile(BuildContext context, ThemeData theme, DocumentSnapshot args){
+   // if(Users.fromSnapshot(args).longAbout != null) {
+      return Scaffold(
+          appBar: AppBar(
+            title: const Text('Profile'),
           ),
-          Container(
-            margin: EdgeInsets.all(20),
-            width: 150,
-            height: 150,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('assets/teachers.jpg'),
-                  fit: BoxFit.fill
+          // body contains name, subject, preferences, etc
+          body: Center(
+              child: Column(children: <Widget>[
+                SizedBox(
+                height: 28,
               ),
-            ),
-          ),
-
-        ]),
-      ),
+              Container(
+                margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
+                width: 110,
+                height: 110,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage('assets/teachers.jpg'),
+                      fit: BoxFit.fill
+                  ),
+                ),
+              ),
+                Text(
+                  'Name',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                 ),
+                ),
+                Text(
+                  'Student',
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    color: Colors.grey,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                SizedBox(
+                  height: 17.0
+                ),
+                Text(
+                  'Time Preferences:',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                ),
+                Text(
+                  'insert time preference',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Subjects:',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'insert subjects',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Class Size:',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'insert class size',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Grade: ',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'insert grade',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Skills:',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'insert skills',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Experience: ',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'insert experience',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Hours:',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'insert hours',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(
+                  height:20.0,
+                ),
+                Text(
+                  'Matched?',
+                  style: TextStyle(
+                    fontSize:17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'yes or no',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+          ]),
+    ),
     );
 
+    }
   }
-}
+ // }
+// Text(
+//   Users
+//       .fromSnapshot(args)
+//       .firstName
+//   style: TextStyle(
+//   fontSize: 40.0,
+//   color: Color.blue,
+//   )
 
 class Dashboard extends StatefulWidget{
 

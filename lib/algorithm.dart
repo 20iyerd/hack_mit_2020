@@ -32,23 +32,22 @@ class Algorithm {
     else if ((classBegin.isAfter(studentBegin) ||
         (classBegin.isAtSameMomentAs(studentBegin)))
         && classEnd.isAfter(studentEnd)) {
-      time = (24.0 - classEnd
-          .difference(studentEnd)
-          .inHours) / 24.0;
+      time = (24.0 - ((classEnd
+          .difference(studentEnd).inMinutes)/60.0) / 24.0);
     }
     else if (classBegin.isBefore(studentBegin) &&
         (classEnd.isBefore(studentEnd) ||
             classEnd.isAtSameMomentAs(studentEnd))) {
-      time = (24.0 - studentBegin
+      time = (24.0 - ((studentBegin
           .difference(classBegin)
-          .inHours) / 24.0;
+          .inMinutes)/60.0)/24.0);
     }
     else {
-      time = (24.0 - studentBegin
+      time = (24.0 - ((studentBegin
           .difference(classBegin)
-          .inHours - classEnd
+          .inMinutes)/60.0) - (classEnd
           .difference(studentEnd)
-          .inHours) / 24.0;
+          .inMinutes)/60.0) / 24.0;
     }
     return time;
   }
