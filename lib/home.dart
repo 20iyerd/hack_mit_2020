@@ -51,16 +51,16 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(60, 10, 60, 0),
+              padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  text: 'we are dedicated to connecting gap-year students🧑‍🎓 to opportunitites to help teachers🧑‍🏫, school, and the community',
+                  text: 'we are dedicated to connecting gap-year students🧑‍🎓to opportunitites to help teachers🧑‍🏫, schools🏫, and the community🏡',
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(fontFamily: 'EmojiOne',
                           fontWeight: FontWeight.w400,
                           color: Color(0xff24305e),
-                          fontSize: 20.0,)),
+                          fontSize: 20.5,)),
                     ),
 
                 ),
