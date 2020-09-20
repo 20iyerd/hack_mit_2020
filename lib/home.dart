@@ -37,9 +37,6 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: 280,
-              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
                 child: Text('Welcome to BridgeGap!',
@@ -84,36 +81,12 @@ class HomePage extends StatelessWidget {
               //     );
               //   },
               // ),
-              SizedBox(
-                height: 800,
-              ),
-              Card(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "What's new:",
-                      style: Theme.of(context).textTheme.headline,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      "No new updates to show.",
-                      style: Theme.of(context).textTheme.body1,
-                    )
-                  ],
-                ),
-                color: Colors.blueGrey[200],
-              ),
-              SizedBox(
-                height: 800,
-              )
             ],
           ),
         ),
       ),
       backLayer: Container(
-        color: Colors.blueGrey[100],
+        color: Color(0xffa8d0e6),
       ),
       frontTitle: Text("Home"),
       backTitle: Text("Welcome"),
@@ -133,15 +106,14 @@ class _MatchesState extends State<Matches> {
     return Center(
       child: Card(
         child: Container(
-          padding: new EdgeInsets.fromLTRB(30.0, 0, 10, 0), //creates weird padding
+          padding:
+              new EdgeInsets.fromLTRB(30.0, 0, 10, 0), //creates weird padding
           width: 350,
           height: 400,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SizedBox(
-                  height: 40
-              ),
+              SizedBox(height: 40),
               Text(
                 'Name',
                 style: TextStyle(
@@ -150,113 +122,127 @@ class _MatchesState extends State<Matches> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                  height: 15
-              ),
+              SizedBox(height: 15),
               RichText(
                 text: TextSpan(
                   text: 'Time Preferences: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert time preferences', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert time preferences',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Subjects: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert subjects', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert subjects',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Class Size: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert class size', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert class size',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Grade: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert grade', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert grade',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Skills: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert skills', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert skills',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Experience: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert experience', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert experience',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Hours: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'insert hours', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'insert hours',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 5
-              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
                   text: 'Matched? ',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16.0),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'yes or no', style: TextStyle(fontWeight: FontWeight.normal)),
+                        text: 'yes or no',
+                        style: TextStyle(fontWeight: FontWeight.normal)),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 35
-              ),
+              SizedBox(height: 35),
               ButtonBar(
                 children: <Widget>[
                   FloatingActionButton.extended(
