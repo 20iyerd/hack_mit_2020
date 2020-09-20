@@ -64,8 +64,8 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
           child: Text('Menu'),
           decoration: BoxDecoration(
             color: Colors.blue,
+            )
           ),
-        ),
         ListTile(
           title: Text('Profile'),
           onTap: () {
@@ -133,16 +133,6 @@ class Profile extends StatefulWidget{
 }
 
 class _ProfileState extends State<Profile> {
-  // student
- /* String name;
-  String school;
-  String grade;
-  String subjects;
-  String experience;
-  String skills;
-  String preferences; //time, class size, class grade, time commitment
-  // teacher: Name, School, Grade, Subject(s), Preferences (experience, skills time commitment)
-  String classSize; */
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -157,167 +147,173 @@ class _ProfileState extends State<Profile> {
           ),
           // body contains name, subject, preferences, etc
           body: Center(
-              child: Column(children: <Widget>[
-                SizedBox(
-                height: 28,
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
-                width: 110,
-                height: 110,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage('assets/teachers.jpg'),
-                      fit: BoxFit.fill
+              child: SingleChildScrollView(
+                child: Column(children: <Widget>[
+                  SizedBox(
+                    height: 28,
                   ),
-                ),
-              ),
-                Text(
-                  'Name',
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                 ),
-                ),
-                Text(
-                  'Student',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.grey,
-                    fontStyle: FontStyle.italic,
+                  Container(
+                    margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
+                    width: 110,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage('assets/teachers.jpg'),
+                          fit: BoxFit.fill
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 17.0
-                ),
-                Text(
-                  'Time Preferences:',
+                  Text(
+                    'Name',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Student',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.grey,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  SizedBox(
+                      height: 17.0
+                  ),
+                  Text(
+                    'Time Preferences:',
                     style: TextStyle(
                       fontSize:17.0,
                       fontWeight: FontWeight.bold,
                     ),
-                ),
-                Text(
-                  'insert time preference',
-                  style: TextStyle(
-                    fontSize: 16.0,
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Subjects:',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'insert time preference',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                Text(
-                  'insert subjects',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  SizedBox(
+                    height:20.0,
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Class Size:',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Subjects:',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  'insert class size',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  Text(
+                    'insert subjects',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Grade: ',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(
+                    height:20.0,
                   ),
-                ),
-                Text(
-                  'insert grade',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  Text(
+                    'Class Size:',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Skills:',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'insert class size',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                Text(
-                  'insert skills',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  SizedBox(
+                    height:20.0,
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Experience: ',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Grade: ',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  'insert experience',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  Text(
+                    'insert grade',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Hours:',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(
+                    height:20.0,
                   ),
-                ),
-                Text(
-                  'insert hours',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  Text(
+                    'Skills:',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height:20.0,
-                ),
-                Text(
-                  'Matched?',
-                  style: TextStyle(
-                    fontSize:17.0,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'insert skills',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                Text(
-                  'yes or no',
-                  style: TextStyle(
-                    fontSize: 16.0,
+                  SizedBox(
+                    height:20.0,
                   ),
-                ),
-          ]),
+                  Text(
+                    'Experience: ',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'insert experience',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height:20.0,
+                  ),
+                  Text(
+                    'Hours:',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'insert hours',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height:20.0,
+                  ),
+                  Text(
+                    'Matched?',
+                    style: TextStyle(
+                      fontSize:17.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'yes or no',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  )
+                ]),
+              )
+
     ),
     );
 
@@ -348,14 +344,167 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         title: const Text('Student Dashboard'),
       ),
+        body: Center(
+          child: SingleChildScrollView(
+
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    "Status:",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Text(
+                    "Teachers Matched with:",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Teacher Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Teacher Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+          ),
+//          body: Padding(
+//              padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+//              child: Text(
+//                  "hi",
+//                  style: TextStyle(
+//                    fontSize: 20,
+//              ),
+//              )
+//          )
+          // body contains students matched with, classes
+        ),
         // body contains status, teachers matched with
     );
-    }else {
+    }else{
       return Scaffold(
         appBar: AppBar(
           title: const Text("Teacher Dashboard"),
         ),
+        body: Center(
+            child: SingleChildScrollView(
+
+             child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  "Status:",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                  Text(
+                      "Students Matched with:",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+              ],
+            )
+        ),
+//          body: Padding(
+//              padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+//              child: Text(
+//                  "hi",
+//                  style: TextStyle(
+//                    fontSize: 20,
+//              ),
+//              )
+//          )
         // body contains students matched with, classes
+    ),
       );
     }
   }
@@ -372,8 +521,66 @@ class _OtherMatchesState extends State<OtherMatches> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Matches'),
+        title: const Text('Match Requests'),
       ),
+      body: ListView(
+        padding: const EdgeInsets.all(5),
+        children: <Widget>[
+          Container(
+            height: 30,
+            color: Colors.blue[100],
+            child: Text(
+              "Outgoing Requests:",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blue[50],
+            child: const Center(child: Text('Name')),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blue[50],
+            child: const Center(child: Text('Name')),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blue[50],
+            child: const Center(child: Text('Name')),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 30,
+            color: Colors.blue[100],
+            child: Text(
+              "Incoming Requests:",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blue[50],
+            child: const Center(child: Text('Name')),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blue[50],
+            child: const Center(child: Text('Name')),
+          ),
+          Container(
+            height: 50,
+            color: Colors.blue[50],
+            child: const Center(child: Text('Name')),
+          ),
+        ],
+      )
     );
 
   }

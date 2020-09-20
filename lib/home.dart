@@ -140,7 +140,7 @@ class _MatchesState extends State<Matches> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SizedBox(
-                height: 40
+                  height: 40
               ),
               Text(
                 'Name',
@@ -151,10 +151,10 @@ class _MatchesState extends State<Matches> {
                 ),
               ),
               SizedBox(
-                height: 15
+                  height: 15
               ),
               RichText(
-                  text: TextSpan(
+                text: TextSpan(
                   text: 'Time Preferences: ',
                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0),
                   children: <TextSpan>[
@@ -164,7 +164,7 @@ class _MatchesState extends State<Matches> {
                 ),
               ),
               SizedBox(
-                height: 5
+                  height: 5
               ),
               RichText(
                 text: TextSpan(
@@ -255,7 +255,7 @@ class _MatchesState extends State<Matches> {
                 ),
               ),
               SizedBox(
-                height: 35
+                  height: 35
               ),
               ButtonBar(
                 children: <Widget>[
