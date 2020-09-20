@@ -123,7 +123,7 @@ class _AppState extends State<MyApp> {
         builder: (context, snapshot) {
       // Check for errors
       if (snapshot.hasError) {
-        return Text("something went wrong");
+        return Text("something went wrong",textDirection: TextDirection.ltr,);
       }
       // Once complete, show your application
       if (snapshot.connectionState == ConnectionState.done) {

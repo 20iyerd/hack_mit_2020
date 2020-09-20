@@ -146,9 +146,9 @@ class _ProfileState extends State<Profile> {
     return _buildProfile(context, theme, args);
   }
   Widget _buildProfile(BuildContext context, ThemeData theme, DocumentSnapshot args){
-      final record = StudentUsers.fromSnapshot(args);
+      // final record = StudentUsers.fromSnapshot(args);
    // if(Users.fromSnapshot(args).longAbout != null) {
-      if (record != null) {
+   //    if (record != null) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Profile'),
@@ -171,8 +171,8 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    // "name",
-                    record.firstname+record.lastname,
+                    "Name:",
+                    // record.firstname+record.lastname,
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.black,
@@ -180,7 +180,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'Student',
+                    'Test Student',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,
@@ -198,7 +198,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'insert time preference',
+                    '8AM to 3PM EST',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -214,7 +214,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'insert subjects',
+                    'English/Language_Arts,Music',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -246,7 +246,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'insert grade',
+                    '5',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -262,7 +262,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'insert skills',
+                    'Creativity,Teamwork,Diligence',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -278,7 +278,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'insert experience',
+                    '2 years',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -294,7 +294,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'insert hours',
+                    '10-20',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -310,7 +310,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'yes or no',
+                    'no',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -323,10 +323,10 @@ class _ProfileState extends State<Profile> {
 
           ),
         );
-      }
-      else {
-        return LinearProgressIndicator();
-      }
+      // }
+      // else {
+      //   return LinearProgressIndicator();
+      // }
 
     }
   }
