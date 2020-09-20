@@ -16,11 +16,11 @@ class HomePage extends StatelessWidget {
         //   child: SingleChildScrollView(
         child: Column(
           //mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.center,
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              height: 120,
+              height: 60,
             ),
             Image(
               image: AssetImage("assets/logo.jpg"),
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Color(0xff24305e),
-                          fontSize: 45.0)),
+                          fontSize: 45.0, height:1)),
                   children: <TextSpan>[
                     TextSpan(
                       text: 'BridgeGap',
@@ -50,11 +50,23 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            // Text(
-            //   "Welcome to BridgeGap!",
-            //   style: Theme.of(context).textTheme.display1,
-            //   textAlign: TextAlign.center,
-            // ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(60, 10, 60, 0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: 'blah blah blah we are dedicated to connecting 👨‍🎓gap-year students🧑‍🎓 with teachers🧑‍🏫 where you can make a real difference in the school🏫 and community. blah blah ',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(fontFamily: 'EmojiOne',
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xff24305e),
+                          fontSize: 20.0)),
+                    ),
+
+                ),
+              ),
+
+
             SizedBox(
               height: 30,
             ),
@@ -62,15 +74,16 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
               child: RaisedButton(
-                color: Color (0xfff8e9a1),
-                padding: const EdgeInsets.fromLTRB(15,10,15,10),
+                color: Color(0xfff8e9a1),
+                padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                 child: Text(
                   'GET MATCHED',
                   style: GoogleFonts.kosugi(
                       textStyle: TextStyle(
-                        fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w700,
                           color: Color(0xfff76c6c),
-                          fontSize: 25.0, letterSpacing:1.1)),
+                          fontSize: 25.0,
+                          letterSpacing: 1.1)),
                 ),
                 onPressed: () {
                   Navigator.push(
