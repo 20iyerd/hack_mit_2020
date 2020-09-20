@@ -64,8 +64,8 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
           child: Text('Menu'),
           decoration: BoxDecoration(
             color: Colors.blue,
+            )
           ),
-        ),
         ListTile(
           title: Text('Profile'),
           onTap: () {

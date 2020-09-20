@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -13,20 +14,26 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( //organize into scaffold
-      body: SafeArea(
+    return Scaffold(//organize into scaffold
+      backgroundColor: Color(0xffa8d0e6),
+      body: Container(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            SizedBox(height: 80.0),
+            SizedBox(height: 140.0),
             Column(
               children: <Widget>[
                 Image.asset('assets/earth.png'), //display custom logo
-                SizedBox(height: 16.0), //spacing for aesthetics
-                Text('Login'),
+                SizedBox(height: 50.0), //spacing for aesthetics
+                Text('BridgeGap',
+                    style: GoogleFonts.frederickatheGreat(
+                      textStyle: TextStyle(color: Color(0xff24305e), fontSize: 50, fontWeight: FontWeight.bold),
+                    ),
+                ),
+                    //0xff24305e is dark blue
               ],
             ),
-            SizedBox(height: 120.0), //spacing for aesthetics
+            SizedBox(height: 50.0), //spacing for aesthetics
             TextField(
               //add a controller to authenticate and clear text
               controller: _usernameController,
@@ -34,6 +41,10 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                 filled: true,
                 labelText: "Username or Email:",
+                labelStyle: TextStyle(color: const Color(0xff24305e)),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xff24305e)),
+                )
               ),
             ),
 
@@ -49,13 +60,14 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                 filled: true,
                 labelText: "Password:",
+                labelStyle: TextStyle(color: Color(0xff24305e)),
               ),
             ),
 
             FlatButton(
               child: Text(
                 "Create a new account",
-                style: Theme.of(context).textTheme.button,
+                style: TextStyle( fontSize:17, color:Color(0xff374785)),
               ),
               onPressed: (){
                 Navigator.pushNamed(context, '/signup');
@@ -67,14 +79,16 @@ class _LoginPageState extends State<LoginPage> {
             ButtonBar(
               children: <Widget>[
                 FlatButton(
-                  child: Text("Cancel"),
+                  child: Text(
+                      "Cancel",
+                  style: TextStyle(color: Color(0xff24305e))),
                   onPressed: () {
                     _usernameController.clear();
                     _passwordController.clear();
                   },
                 ),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: Color(0xff24305e),
                   child: Text(
                     "Next",
                     style: TextStyle(color: Colors.white),
