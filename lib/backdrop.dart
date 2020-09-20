@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'users.dart';
+
 class _BackdropState extends State<Backdrop> //added backdrop for added functionality, especially with layers
     with SingleTickerProviderStateMixin {
   final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop'); //label
@@ -133,6 +135,7 @@ class Profile extends StatefulWidget{
 }
 
 class _ProfileState extends State<Profile> {
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -140,6 +143,7 @@ class _ProfileState extends State<Profile> {
     return _buildProfile(context, theme, args);
   }
   Widget _buildProfile(BuildContext context, ThemeData theme, DocumentSnapshot args){
+      // final record = StudentUsers.fromSnapshot(args);
    // if(Users.fromSnapshot(args).longAbout != null) {
       return Scaffold(
           appBar: AppBar(
@@ -165,7 +169,8 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'Name',
+                    "name",
+                    // record.name,
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.black,

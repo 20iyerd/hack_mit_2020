@@ -794,7 +794,7 @@ class _TeacherState1 extends State<Teacher1> {
                                 "display": "Flexibility",
                                 "value": "Flexibility",
                               },{
-                                "display": "diligence",
+                                "display": "Diligence",
                                 "value": "Diligence",
                               },
                               {

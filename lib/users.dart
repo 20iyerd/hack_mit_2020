@@ -1,24 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class StudentUsers {
-  final String name;
-  final String school;
+class StudentUsers extends StatelessWidget {
+  // final String name;
+  // final String school;
   // final int grade;
   // final <String>[] subjects;
   // final int yrsExperience;
   // final <String>[] softSkills;
-  // final <String>[] timePreferences;
+  // final int timepreference;
   // final bool matched;
 
-  StudentUsers.fromMap(Map<String,dynamic> map,)
-    : assert(map['name'] != null),
-      assert(map['school'] != null),
-      name = map['name'],
-      school = map['school'];
+  // StudentUsers.fromMap(Map<String,dynamic> map,)
+  //   : assert(map['firstname'] != null),
+  //     assert(map['lastname'] != null),
+  //     assert(map['school'] != null),
+  //     assert(map['timepreference'] != null),
+  //     assert(map['classsize'] != null),
+  //     assert(map['grade'] != null),
+  //     assert(map['matched'] != null),
+  //     assert(map['skills'] != null),
+  //     assert(map['subjects'] != null),
+      // name = map['name'],
+      // school = map['school'];
 
-  StudentUsers.fromSnapshot(DocumentSnapshot snapshot)
-    : this.fromMap(snapshot.data());
+  // StudentUsers.fromSnapshot(DocumentSnapshot snapshot)
+  //   : this.fromMap(snapshot.data());
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return StudentUsersBuilder();
+  }
 
 }
 
@@ -34,7 +47,7 @@ class StudentUsersBuilder extends StatelessWidget {
       //organizes database data into a stream
         stream: FirebaseFirestore.instance.collection("Student").snapshots(),
         builder: (context, snapshot) {
-          return Text('h');
+          return snapshot.data.documents; //placeholder
           // if(snapshot.hasData) {
             // switch (snapshot
             //     .connectionState) { //this whole no connection thing is untested cause it always has connection for some reason
