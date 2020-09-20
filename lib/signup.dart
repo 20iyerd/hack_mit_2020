@@ -905,23 +905,25 @@ class _TeacherState1 extends State<Teacher1> {
                       onPressed: () {
                         _startTime = _startTimeController.text;
                         _endTime = _endTimeController.text;
-                        // if (_startTime == '12:00'){
-                        // _startTime = '00:00';
-                        // }// noon
-                        // if (_endTime == '12:00'){
-                        //   _endTime = '00:00';
-                        // }
-                        // if (!_startTimeAM){
-                        //   _startTime = ((int.parse((_startTime).substring(1,3))) + 12).toString() + ':00';
-                        // }
-                        // if (!_endTimeAM){
-                        //   _endTime = ((int.parse((_endTime).substring(1,3))) + 12).toString() + ':00';
-                        // }
-                        // startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
-                        // endDateTime = DateTime.parse(_date + " " + _endTime + " " + _timeZone.substring(1,6));
-                        // fullName = _firstNameController.text + " " + _lastNameController.text;
-                        print(_startTime);
-                        print(_endTime);
+                        if (_startTime == '12:00'){
+                          _startTime = '00:00';
+                        }// noon
+                        if (_endTime == '12:00'){
+                           _endTime = '00:00';
+                         }
+
+                        if (_startTimeAM == false){
+                           _startTime = ((int.parse((_startTime).substring(0,2))) + 12).toString() + ':00';
+                         }
+                        if (_endTimeAM == false){
+                           _endTime = ((int.parse((_endTime).substring(0,2))) + 12).toString() + ':00';
+                         }
+                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(0,5));
+                        endDateTime = DateTime.parse(_date + " " + _endTime + " " + _timeZone.substring(0,5));
+                        fullName = _firstNameController.text + " " + _lastNameController.text;
+                        print(endDateTime);
+                        print(startDateTime);
+                        print(fullName);
                         print(_subjectsList);
                         print(_classSize);
                         print(_grade);
@@ -1872,21 +1874,32 @@ class _StudentState1 extends State<Student1> {
                       onPressed: () {
                         _startTime = _startTimeController.text;
                         _endTime = _endTimeController.text;
-                        // if (_startTime == '1200'){
-                        //   _startTime = '0000';
-                        // }// noon
-                        // if (_endTime == '1200'){
-                        //   _endTime = '0000';
-                        // }
-                        // if (!_startTimeAM){
-                        //   _startTime = (int.parse('_startTime') + 1200).toString();
-                        // }
-                        // if (!_endTimeAM){
-                        //   _endTime = (int.parse('_endTime')+1200).toString();
-                        // }
-                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
-                        endDateTime = DateTime.parse(_date + " " + _endTime + " " + _timeZone.substring(1,6));
+                        if (_startTime == '12:00'){
+                          _startTime = '00:00';
+                        }// noon
+                        if (_endTime == '12:00'){
+                          _endTime = '00:00';
+                        }
+
+                        if (_startTimeAM == false){
+                          _startTime = ((int.parse((_startTime).substring(0,2))) + 12).toString() + ':00';
+                        }
+                        if (_endTimeAM == false){
+                          _endTime = ((int.parse((_endTime).substring(0,2))) + 12).toString() + ':00';
+                        }
+                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(0,5));
+                        endDateTime = DateTime.parse(_date + " " + _endTime + " " + _timeZone.substring(0,5));
                         fullName = _firstNameController.text + " " + _lastNameController.text;
+                        print(endDateTime);
+                        print(startDateTime);
+                        print(fullName);
+                        print(_subjectsList);
+                        print(_classSize);
+                        print(_gradeMax);
+                        print(_gradeMin);
+                        print(_skillsList);
+                        print(_experience);
+                        print(_hours);
                         Navigator.pushNamed(context, '/home');
                       }
                   ),
