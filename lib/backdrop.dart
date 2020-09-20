@@ -146,9 +146,10 @@ class _ProfileState extends State<Profile> {
     return _buildProfile(context, theme, args);
   }
   Widget _buildProfile(BuildContext context, ThemeData theme, DocumentSnapshot args){
-      // final record = StudentUsers.fromSnapshot(args);
+      final record = StudentUsers.fromSnapshot(args);
    // if(Users.fromSnapshot(args).longAbout != null) {
-      return Scaffold(
+      if (record != null) {
+        return Scaffold(
           appBar: AppBar(
             title: const Text('Profile'),
             backgroundColor: Color(0xfff76c6c),
@@ -170,8 +171,8 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    "name",
-                    // record.name,
+                    // "name",
+                    record.firstname+record.lastname,
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.black,
@@ -192,7 +193,7 @@ class _ProfileState extends State<Profile> {
                   Text(
                     'Time Preferences:',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -203,12 +204,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Subjects:',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -219,12 +220,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Class Size:',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -235,12 +236,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Grade: ',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -251,12 +252,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Skills:',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -267,12 +268,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Experience: ',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -283,12 +284,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Hours:',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -299,12 +300,12 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(
-                    height:20.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Matched?',
                     style: TextStyle(
-                      fontSize:17.0,
+                      fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -320,8 +321,12 @@ class _ProfileState extends State<Profile> {
                 ]),
               )
 
-    ),
-    );
+          ),
+        );
+      }
+      else {
+        return LinearProgressIndicator();
+      }
 
     }
   }

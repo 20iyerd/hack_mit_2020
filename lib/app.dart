@@ -157,7 +157,7 @@ class _AppState extends State<MyApp> {
           },
         );
       }
-        return Text("loading");
+        return LinearProgressIndicator();
       }
     );
 
