@@ -348,14 +348,215 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         title: const Text('Student Dashboard'),
       ),
+        body: Center(
+          child: SingleChildScrollView(
+
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    "Status:",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Text(
+                    "Teachers Matched with:",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Teacher Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Teacher Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Teacher Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Teacher Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+          ),
+//          body: Padding(
+//              padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+//              child: Text(
+//                  "hi",
+//                  style: TextStyle(
+//                    fontSize: 20,
+//              ),
+//              )
+//          )
+          // body contains students matched with, classes
+        ),
         // body contains status, teachers matched with
     );
-    }else {
+    }else{
       return Scaffold(
         appBar: AppBar(
           title: const Text("Teacher Dashboard"),
         ),
+        body: Center(
+            child: SingleChildScrollView(
+
+             child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  "Status:",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                  Text(
+                      "Students Matched with:",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: 300.0,
+                    height: 100.0,
+                    color: Colors.blue,
+                    child: Text(
+                      "Student Name",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  ),
+              ],
+            )
+        ),
+//          body: Padding(
+//              padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
+//              child: Text(
+//                  "hi",
+//                  style: TextStyle(
+//                    fontSize: 20,
+//              ),
+//              )
+//          )
         // body contains students matched with, classes
+    ),
       );
     }
   }
