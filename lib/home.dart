@@ -20,14 +20,14 @@ class HomePage extends StatelessWidget {
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              height: 80,
+              height: 120,
             ),
             Image(
               image: AssetImage("assets/logo.jpg"),
-              height: 200,
+              height: 150,
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(60, 0, 60, 0),
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
@@ -36,14 +36,14 @@ class HomePage extends StatelessWidget {
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Color(0xff24305e),
-                          fontSize: 40.0)),
+                          fontSize: 45.0)),
                   children: <TextSpan>[
                     TextSpan(
                       text: 'BridgeGap',
                       style: GoogleFonts.frederickatheGreat(
                           textStyle: TextStyle(
                               color: Color(0xff24305e),
-                              fontSize: 50,
+                              fontSize: 60,
                               fontWeight: FontWeight.bold)),
                     ),
                   ],
