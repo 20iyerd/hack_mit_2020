@@ -30,24 +30,24 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
       backgroundColor: Color (0xfff76c6c),
       title: Text('Explore'),
       actions: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.search,
-            semanticLabel: 'search',
-          ),
-          onPressed: () {
-            
-          },
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.settings,
-            semanticLabel: 'settings',
-          ),
-          onPressed: () {
-
-          },
-        ),
+//        IconButton(
+//          icon: Icon(
+//            Icons.search,
+//            semanticLabel: 'search',
+//          ),
+//          onPressed: () {
+//
+//          },
+//        ),
+//        IconButton(
+//          icon: Icon(
+//            Icons.settings,
+//            semanticLabel: 'settings',
+//          ),
+//          onPressed: () {
+//
+//          },
+//        ),
       ],
     );
     return Scaffold(
@@ -367,11 +367,11 @@ class _DashboardState extends State<Dashboard> {
                   Text(
                     "Status:",
                     style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 28.0,
                     ),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 80,
                   ),
                   Text(
                     "Teachers Matched with:",
@@ -439,16 +439,16 @@ class _DashboardState extends State<Dashboard> {
              child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
                 Text(
                   "Status:",
                   style: TextStyle(
-                    fontSize: 30.0,
+                    fontSize: 28.0,
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 50,
                 ),
                   Text(
                       "Students Matched with:",

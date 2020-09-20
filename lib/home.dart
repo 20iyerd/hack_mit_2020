@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                       style: GoogleFonts.frederickatheGreat(
                           textStyle: TextStyle(
                               color: Color(0xff24305e),
-                              fontSize: 60,
+                              fontSize: 55,
                               fontWeight: FontWeight.bold)),
                     ),
                   ],
@@ -55,12 +55,12 @@ class HomePage extends StatelessWidget {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  text: 'blah blah blah we are dedicated to connecting 👨‍🎓gap-year students🧑‍🎓 with teachers🧑‍🏫 where you can make a real difference in the school🏫 and community. blah blah ',
+                  text: 'we are dedicated to connecting gap-year students🧑‍🎓 to opportunitites to help teachers🧑‍🏫, school, and the community',
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(fontFamily: 'EmojiOne',
                           fontWeight: FontWeight.w400,
                           color: Color(0xff24305e),
-                          fontSize: 20.0)),
+                          fontSize: 20.0,)),
                     ),
 
                 ),
