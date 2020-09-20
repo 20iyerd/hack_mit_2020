@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
+
+//important variables: startDateTime, endDateTime, _subjectsList, _classSize, _grade, _gradeMin, _gradeMax, _skillsList, _experience, _hours, _status
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -198,7 +199,7 @@ class _TeacherState1 extends State<Teacher1> {
   final formKeySub = new GlobalKey<FormState>();
   final formKeySki = new GlobalKey<FormState>();
 
-  String _timeZone = '+0000';
+  String _timeZone;
   String _startTime = '';
   bool _startTimeAM = true;
   String _endTime = '';
@@ -215,6 +216,8 @@ class _TeacherState1 extends State<Teacher1> {
   String _skills = '';
   int _experience = 0;
   int _hours = 0;
+
+  String fullName;
 
 
   String _handleSubmitted(String selectedGroup, String name, String bio) {
@@ -319,6 +322,7 @@ class _TeacherState1 extends State<Teacher1> {
                     ],
                   ),
                   SizedBox(height: 24.0),
+                  Text('Class Size'),
                   DropdownButton(
                       value: _classSize,
                       items: [
@@ -347,8 +351,8 @@ class _TeacherState1 extends State<Teacher1> {
                   ),
 
                   SizedBox(height: 24.0),
-                  Text('Grade Taught'),
 
+                  Text('Grade Taught'),
                   DropdownButton(
                       value: _grade,
                       items: [
@@ -422,7 +426,7 @@ class _TeacherState1 extends State<Teacher1> {
                                 padding: EdgeInsets.all(16),
                                 child: MultiSelectFormField(
                                     autovalidate: false,
-                                    titleText: 'My workouts',
+                                    titleText: 'Subjects Taught',
                                     validator: (value) {
                                       if (value == null || value.length == 0) {
                                         return 'Please select one or more options';
@@ -470,7 +474,6 @@ class _TeacherState1 extends State<Teacher1> {
                                       setState(() {
                                         _subjectsList = value;
                                       });
-                                      print(_subjectsList);
                                     }
                                 )
                             ),
@@ -516,7 +519,7 @@ class _TeacherState1 extends State<Teacher1> {
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ART"),
-                                      value: '+0200'
+                                      value: '+0200ART'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EAT"),
@@ -794,7 +797,7 @@ class _TeacherState1 extends State<Teacher1> {
                                 "display": "Flexibility",
                                 "value": "Flexibility",
                               },{
-                                "display": "diligence",
+                                "display": "Diligence",
                                 "value": "Diligence",
                               },
                               {
@@ -900,21 +903,33 @@ class _TeacherState1 extends State<Teacher1> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-
-                        if (_startTime == '1200'){
-                          _startTime = '0000';
+                        _startTime = _startTimeController.text;
+                        _endTime = _endTimeController.text;
+                        if (_startTime == '12:00'){
+                          _startTime = '00:00';
                         }// noon
-                        if (_endTime == '1200'){
-                          _endTime = '0000';
-                        }
-                        if (_startTimeAM){
-                          _startTime = (int.parse('_startTime') + 1200).toString();
-                        }
-                        if (_endTimeAM){
-                          _endTime = (int.parse('_endTime')+1200).toString();
-                        }
-                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
-                        endDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
+                        if (_endTime == '12:00'){
+                           _endTime = '00:00';
+                         }
+
+                        if (_startTimeAM == false){
+                           _startTime = ((int.parse((_startTime).substring(0,2))) + 12).toString() + ':00';
+                         }
+                        if (_endTimeAM == false){
+                           _endTime = ((int.parse((_endTime).substring(0,2))) + 12).toString() + ':00';
+                         }
+                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(0,5));
+                        endDateTime = DateTime.parse(_date + " " + _endTime + " " + _timeZone.substring(0,5));
+                        fullName = _firstNameController.text + " " + _lastNameController.text;
+                        print(endDateTime);
+                        print(startDateTime);
+                        print(fullName);
+                        print(_subjectsList);
+                        print(_classSize);
+                        print(_grade);
+                        print(_skillsList);
+                        print(_experience);
+                        print(_hours);
                         Navigator.pushNamed(context, '/home');
                       }
                   ),
@@ -928,7 +943,9 @@ class _TeacherState1 extends State<Teacher1> {
                       onPressed: () {
                         Navigator.pop(context);
                       }
-                  )
+                  ),
+
+                  SizedBox(height: 140)
                 ]
             )
         )
@@ -1060,7 +1077,7 @@ class _StudentState1 extends State<Student1> {
   final formKeySub = new GlobalKey<FormState>();
   final formKeySki = new GlobalKey<FormState>();
 
-  String _timeZone = '+0000';
+  String _timeZone;
   String _startTime = '';
   bool _startTimeAM = true;
   String _endTime = '';
@@ -1078,11 +1095,8 @@ class _StudentState1 extends State<Student1> {
   String _skills = '';
   int _experience = 0;
   int _hours = 0;
-  bool _status = false;
-  String _firstName = ''; // not sure how to get these
-  String _lastName = '';
+  bool _status;
 
-  // things to send to firebase bc they'll be used in algorithm
   String fullName; // _firstName + _lastName
 
 
@@ -1186,6 +1200,8 @@ class _StudentState1 extends State<Student1> {
                     ],
                   ),
                   SizedBox(height: 24.0),
+
+                  Text('Preferred class size'),
                   DropdownButton(
                       value: _classSize,
                       items: [
@@ -1449,7 +1465,7 @@ class _StudentState1 extends State<Student1> {
                                   ),
                                   DropdownMenuItem(
                                       child: Text("ART"),
-                                      value: '+0200'
+                                      value: '+0200ART'
                                   ),
                                   DropdownMenuItem(
                                       child: Text("EAT"),
@@ -1662,6 +1678,7 @@ class _StudentState1 extends State<Student1> {
                       )
                   ),
 
+
                   Form(
                     key: formKeySki,
                     child: Column(
@@ -1855,20 +1872,34 @@ class _StudentState1 extends State<Student1> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                        if (_startTime == '1200'){
-                          _startTime = '0000';
+                        _startTime = _startTimeController.text;
+                        _endTime = _endTimeController.text;
+                        if (_startTime == '12:00'){
+                          _startTime = '00:00';
                         }// noon
-                        if (_endTime == '1200'){
-                          _endTime = '0000';
+                        if (_endTime == '12:00'){
+                          _endTime = '00:00';
                         }
-                        if (_startTimeAM){
-                          _startTime = (int.parse('_startTime') + 1200).toString();
+
+                        if (_startTimeAM == false){
+                          _startTime = ((int.parse((_startTime).substring(0,2))) + 12).toString() + ':00';
                         }
-                        if (_endTimeAM){
-                          _endTime = (int.parse('_endTime')+1200).toString();
+                        if (_endTimeAM == false){
+                          _endTime = ((int.parse((_endTime).substring(0,2))) + 12).toString() + ':00';
                         }
-                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
-                        endDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(1,6));
+                        startDateTime = DateTime.parse(_date + " " + _startTime + " " + _timeZone.substring(0,5));
+                        endDateTime = DateTime.parse(_date + " " + _endTime + " " + _timeZone.substring(0,5));
+                        fullName = _firstNameController.text + " " + _lastNameController.text;
+                        print(endDateTime);
+                        print(startDateTime);
+                        print(fullName);
+                        print(_subjectsList);
+                        print(_classSize);
+                        print(_gradeMax);
+                        print(_gradeMin);
+                        print(_skillsList);
+                        print(_experience);
+                        print(_hours);
                         Navigator.pushNamed(context, '/home');
                       }
                   ),
@@ -1882,7 +1913,9 @@ class _StudentState1 extends State<Student1> {
                       onPressed: () {
                         Navigator.pop(context);
                       }
-                  )
+                  ),
+
+                  SizedBox(height: 140.0)
                 ]
             )
         )
