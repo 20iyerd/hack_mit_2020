@@ -33,21 +33,21 @@ class Algorithm {
         (classBegin.isAtSameMomentAs(studentBegin)))
         && classEnd.isAfter(studentEnd)) {
       time = (24.0 - ((classEnd
-          .difference(studentEnd).inMinutes)/60.0) / 24.0);
+          .difference(studentEnd).inMinutes.toDouble())/60.0) / 24.0);
     }
     else if (classBegin.isBefore(studentBegin) &&
         (classEnd.isBefore(studentEnd) ||
             classEnd.isAtSameMomentAs(studentEnd))) {
       time = (24.0 - ((studentBegin
           .difference(classBegin)
-          .inMinutes)/60.0)/24.0);
+          .inMinutes.toDouble())/60.0)/24.0);
     }
     else {
       time = (24.0 - ((studentBegin
           .difference(classBegin)
-          .inMinutes)/60.0) - (classEnd
+          .inMinutes.toDouble())/60.0) - (classEnd
           .difference(studentEnd)
-          .inMinutes)/60.0) / 24.0;
+          .inMinutes.toDouble())/60.0) / 24.0;
     }
     return time;
   }
@@ -109,7 +109,7 @@ class Algorithm {
       experience = 1.0;
     }
     else {
-      experience = (teacherPreference.toDouble() - studentExperience.toDouble())/teacherPreference;
+      experience = (teacherPreference.toDouble() - studentExperience.toDouble())/teacherPreference.toDouble();
     }
     return experience;
   }
