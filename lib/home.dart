@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
                   text: 'blah blah blah we are dedicated to connecting 👨‍🎓gap-year students🧑‍🎓 with teachers🧑‍🏫 where you can make a real difference in the school🏫 and community. blah blah ',
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(fontFamily: 'EmojiOne',
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w400,
                           color: Color(0xff24305e),
                           fontSize: 20.0)),
                     ),
