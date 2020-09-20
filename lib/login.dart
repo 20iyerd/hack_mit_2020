@@ -23,8 +23,10 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 140.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/earth.png'), //display custom logo
-                SizedBox(height: 50.0), //spacing for aesthetics
+                Image(
+                  image: AssetImage("assets/logo.jpg"),
+                  height:125,
+                ),
                 Text('BridgeGap',
                     style: GoogleFonts.frederickatheGreat(
                       textStyle: TextStyle(color: Color(0xff24305e), fontSize: 50, fontWeight: FontWeight.bold),
@@ -39,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: _usernameController,
               autofocus: true,
               decoration: InputDecoration(
+                fillColor: Colors.white,
                 filled: true,
                 labelText: "Username or Email:",
                 labelStyle: TextStyle(color: const Color(0xff24305e)),
@@ -58,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true, //make sure password isn't visible
               autofocus: true,
               decoration: InputDecoration(
+                fillColor: Colors.white,
                 filled: true,
                 labelText: "Password:",
                 labelStyle: TextStyle(color: Color(0xff24305e)),
@@ -67,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             FlatButton(
               child: Text(
                 "Create a new account",
-                style: TextStyle( fontSize:17, color:Color(0xff374785)),
+                style: TextStyle(fontSize:18, color:Color(0xff374785), fontWeight: FontWeight.w600),
               ),
               onPressed: (){
                 Navigator.pushNamed(context, '/signup');

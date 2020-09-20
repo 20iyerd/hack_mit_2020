@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'users.dart';
+
 class _BackdropState extends State<Backdrop> //added backdrop for added functionality, especially with layers
     with SingleTickerProviderStateMixin {
   final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop'); //label
@@ -25,7 +27,7 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
       brightness: Brightness.dark, //make top status bar of phone icons appear white for contrast
       elevation: 0.0,
       titleSpacing: 0.0,
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Color (0xfff76c6c),
       title: Text('Explore'),
       actions: <Widget>[
         IconButton(
@@ -61,8 +63,11 @@ class _BackdropState extends State<Backdrop> //added backdrop for added function
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Text('Menu'),
+          //child: Text('Menu'),
           decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage("https://cdn.dribbble.com/users/1431602/screenshots/5020547/golden-gate.gif"), alignment:Alignment.topCenter,
+                fit: BoxFit.cover),
             color: Colors.blue,
             )
           ),
@@ -133,6 +138,7 @@ class Profile extends StatefulWidget{
 }
 
 class _ProfileState extends State<Profile> {
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -140,20 +146,19 @@ class _ProfileState extends State<Profile> {
     return _buildProfile(context, theme, args);
   }
   Widget _buildProfile(BuildContext context, ThemeData theme, DocumentSnapshot args){
+      // final record = StudentUsers.fromSnapshot(args);
    // if(Users.fromSnapshot(args).longAbout != null) {
       return Scaffold(
           appBar: AppBar(
             title: const Text('Profile'),
+            backgroundColor: Color(0xfff76c6c),
           ),
           // body contains name, subject, preferences, etc
           body: Center(
               child: SingleChildScrollView(
                 child: Column(children: <Widget>[
-                  SizedBox(
-                    height: 28,
-                  ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
+                    margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 5.0),
                     width: 110,
                     height: 110,
                     decoration: BoxDecoration(
@@ -165,7 +170,8 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    'Name',
+                    "name",
+                    // record.name,
                     style: TextStyle(
                       fontSize: 25.0,
                       color: Colors.black,
@@ -175,7 +181,7 @@ class _ProfileState extends State<Profile> {
                   Text(
                     'Student',
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       color: Colors.grey,
                       fontStyle: FontStyle.italic,
                     ),
@@ -343,6 +349,7 @@ class _DashboardState extends State<Dashboard> {
       return Scaffold(
       appBar: AppBar(
         title: const Text('Student Dashboard'),
+        backgroundColor: Color(0xfff76c6c),
       ),
         body: Center(
           child: SingleChildScrollView(
@@ -419,6 +426,7 @@ class _DashboardState extends State<Dashboard> {
       return Scaffold(
         appBar: AppBar(
           title: const Text("Teacher Dashboard"),
+          backgroundColor: Color(0xfff76c6c),
         ),
         body: Center(
             child: SingleChildScrollView(
@@ -522,6 +530,7 @@ class _OtherMatchesState extends State<OtherMatches> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Match Requests'),
+        backgroundColor: Color(0xfff76c6c),
       ),
       body: ListView(
         padding: const EdgeInsets.all(5),

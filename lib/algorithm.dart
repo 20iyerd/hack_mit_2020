@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:math';
 
 class Algorithm {
 // factors of comparison

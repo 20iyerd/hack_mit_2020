@@ -2,6 +2,7 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'backdrop.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   //immutable widget which doesn't change state
@@ -12,78 +13,102 @@ class HomePage extends StatelessWidget {
 
     return Backdrop(
       frontLayer: Center(
-        // CustomScrollView(
-//          slivers: <Widget>[
-//            SliverAppBar(
-//              expandedHeight: 200,
-//              flexibleSpace: const FlexibleSpaceBar(
-//                title: Text(
-//                  "Welcome, User!",
-//                  textAlign: TextAlign.center,
-//                ),
-//              ),
-//              actions: <Widget>[
-//              ],
-//              pinned: false,
-//              floating: false,
-//              snap: false,
-//            ),
-//          ],
-//        ),
-//    ============================================================================
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
-                child: Text('Welcome to BridgeGap!',
-                    style: Theme.of(context).textTheme.display1,
-                    textAlign: TextAlign.center),
-              ),
-              // Text(
-              //   "Welcome to BridgeGap!",
-              //   style: Theme.of(context).textTheme.display1,
-              //   textAlign: TextAlign.center,
-              // ),
-              SizedBox(
-                height: 40,
-              ),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(90, 0, 90, 0),
-                child: RaisedButton(
-                  color: Colors.green,
-                  child: Text(
-                    "Get Matched",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Matches()),
-                    );
-                  },
+        //   child: SingleChildScrollView(
+        child: Column(
+          //mainAxisSize: MainAxisSize.max,
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              height: 60,
+            ),
+            Image(
+              image: AssetImage("assets/logo.jpg"),
+              height: 150,
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: 'Welcome to ',
+                  style: GoogleFonts.indieFlower(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xff24305e),
+                          fontSize: 45.0, height:1)),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'BridgeGap',
+                      style: GoogleFonts.frederickatheGreat(
+                          textStyle: TextStyle(
+                              color: Color(0xff24305e),
+                              fontSize: 60,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ],
                 ),
               ),
-              // RaisedButton(
-              //   color: Colors.green,
-              //   child: Text(
-              //     "Get Matched",
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(builder: (context) => Matches()),
-              //     );
-              //   },
-              // ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(60, 10, 60, 0),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: 'blah blah blah we are dedicated to connecting 👨‍🎓gap-year students🧑‍🎓 with teachers🧑‍🏫 where you can make a real difference in the school🏫 and community. blah blah ',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(fontFamily: 'EmojiOne',
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff24305e),
+                          fontSize: 20.0)),
+                    ),
+
+                ),
+              ),
+
+
+            SizedBox(
+              height: 30,
+            ),
+
+            Padding(
+              padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
+              child: RaisedButton(
+                color: Color(0xfff8e9a1),
+                padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                child: Text(
+                  'GET MATCHED',
+                  style: GoogleFonts.kosugi(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xfff76c6c),
+                          fontSize: 25.0,
+                          letterSpacing: 1.1)),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Matches()),
+                  );
+                },
+              ),
+            ),
+            // RaisedButton(
+            //   color: Colors.green,
+            //   child: Text(
+            //     "Get Matched",
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => Matches()),
+            //     );
+            //   },
+            // ),
+          ],
         ),
+        //),
       ),
       backLayer: Container(
         color: Color(0xffa8d0e6),
@@ -272,6 +297,7 @@ class _MatchesState extends State<Matches> {
     );
   }
 }
+
 // floatingActionButton: FloatingActionButton.extended(
 // onPressed:(){
 // //add your onPressed code here!
@@ -298,6 +324,139 @@ class _MatchesState extends State<Matches> {
 //           ),
 //         ),
 //       ],
+//     );
+//   }
+// }
+
+// // import 'package:cloud_firestore/cloud_firestore.dart';
+// // import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
+// import 'backdrop.dart';
+//
+// class HomePage extends StatelessWidget {
+//   //immutable widget which doesn't change state
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     //required method by stateless widgets as well
+//
+//     return Backdrop(
+//       frontLayer: Center(
+//         // CustomScrollView(
+// //          slivers: <Widget>[
+// //            SliverAppBar(
+// //              expandedHeight: 200,
+// //              flexibleSpace: const FlexibleSpaceBar(
+// //                title: Text(
+// //                  "Welcome, User!",
+// //                  textAlign: TextAlign.center,
+// //                ),
+// //              ),
+// //              actions: <Widget>[
+// //              ],
+// //              pinned: false,
+// //              floating: false,
+// //              snap: false,
+// //            ),
+// //          ],
+// //        ),
+// //    ============================================================================ gradient button fail
+// //         child: SingleChildScrollView(
+// //           child: Column(
+// //             mainAxisSize: MainAxisSize.max,
+// //             crossAxisAlignment: CrossAxisAlignment.stretch,
+// //             mainAxisAlignment: MainAxisAlignment.start,
+// //             children: <Widget>[
+// //               Padding(
+// //                 padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
+// //                 child: Text('Welcome to BridgeGap!',
+// //                     style: TextStyle(fontSize:30),    //EDIT THIS LATER!!!!!
+// //                     textAlign: TextAlign.center),
+// //               ),
+// //               SizedBox(
+// //                 height: 40,
+// //               ),
+// //               // SizedBox(height: 30),
+// //               RaisedButton(
+// //                 color: Color(0xffa8d0e6),
+// //                 highlightColor: Color(0xffa8d0e6),
+// //                 textColor: Color(0xfff76c6c),
+// //                 padding: EdgeInsets.fromLTRB(10,10,10,20),
+// //
+// //                 child: Container(
+// //                   decoration: const BoxDecoration(
+// //                     color:Color(0xffa8d0e6),
+// //                     gradient: LinearGradient(
+// //                       colors: <Color>[
+// //                         Color(0xfff8e9a1),
+// //                         Color(0xffa8d0e6),
+// //                       ],
+// //                     ),
+// //                   ),
+// //                   padding: const EdgeInsets.all(10.0),
+// //                   child: const Text('Get Matching',
+// //                       style: TextStyle(fontSize:20)),
+// //                 ),
+// //                 onPressed: () {
+// //                   Navigator.push(
+// //                       context,
+// //                       MaterialPageRoute(builder: (context) => Matches())
+// //                   );
+// //                 },
+// //               ),
+//
+//
+//               Padding(
+//                 padding: EdgeInsets.fromLTRB(90, 0, 90, 0),
+//                 child: RaisedButton(
+//                   color: Color(0xfff8e9a1),
+//                   child: Container(
+//                     decoration: const BoxDecoration(
+//                       gradient: LinearGradient(
+//                         colors: <Color>[
+//                           Color(0xfff8e9a1),
+//                           Color(0xff374785),
+//                         ],
+//                       ),
+//                     ),
+//                     child: const Text(
+//                       'Gradient Button', style: TextStyle(fontSize:16)
+//                     ),
+//                   // child: Text(
+//                   //   "GET MATCHED",
+//                   //   style: TextStyle(color: Color(0xfff76c6c), fontWeight:FontWeight.w700, fontSize:16),
+//                   // ),
+//                   ),
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(builder: (context) => Matches()),
+//                     );
+//                   },
+//                 ),
+//               ),
+//               RaisedButton(
+//                 color: Colors.green,
+//                 child: Text(
+//                   "Get Matched",
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 onPressed: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(builder: (context) => Matches()),
+//                   );
+//                 },
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//       backLayer: Container(
+//         color: Color(0xffa8d0e6),
+//       ),
+//       frontTitle: Text("Home"),
+//       backTitle: Text("Welcome"),
 //     );
 //   }
 // }
