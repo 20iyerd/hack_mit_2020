@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 //important variables: startDateTime, endDateTime, _subjectsList, _classSize, _grade, _gradeMin, _gradeMax, _skillsList, _experience, _hours, _status
@@ -34,7 +35,8 @@ class _SignUpState extends State<SignUpPage> {
             Column(
               children: <Widget>[
                 SizedBox(height: 16.0), //spacing for aesthetics
-                Text('Create a new account')
+                Text('Create a new account',
+                    style: GoogleFonts.poppins(textStyle: TextStyle(fontSize:25))),
               ],
             ),
 
