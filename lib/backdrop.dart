@@ -149,6 +149,26 @@ class _ProfileState extends State<Profile> {
         title: const Text('Profile'),
       ),
       // body contains name, subject, preferences, etc
+      body: Center(
+        child: Column(children: <Widget>[
+          SizedBox(
+            height:40,
+          ),
+          Container(
+            margin: EdgeInsets.all(20),
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage('assets/teachers.jpg'),
+                  fit: BoxFit.fill
+              ),
+            ),
+          ),
+
+        ]),
+      ),
     );
 
   }
