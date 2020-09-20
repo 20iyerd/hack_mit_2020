@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
-
-
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -34,7 +32,6 @@ class _SignUpState extends State<SignUpPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/earth.png'), //display custom logo
                 SizedBox(height: 16.0), //spacing for aesthetics
                 Text('Create a new account')
               ],
@@ -109,7 +106,6 @@ class _TeacherState extends State<Teacher> {
                   SizedBox(height: 80.0),
                   Column(
                     children: <Widget>[
-                      Image.asset('assets/earth.png'), //display custom logo
                       SizedBox(height: 16.0), //spacing for aesthetics
                       Text('Create a new account'),
                     ],
@@ -209,11 +205,13 @@ class _TeacherState1 extends State<Teacher1> {
   bool _endTimeAM = true;
   double _classDuration = 0; // in minutes
   int _grade = 0;
+  int _classSize = 0;
   List _subjectsList = [];
   String _subjects = '';
   List _skillsList = [];
   String _skills = '';
-
+  int _experience = 0;
+  int _hours = 0;
 
 
   String _handleSubmitted(String selectedGroup, String name, String bio) {
@@ -258,7 +256,6 @@ class _TeacherState1 extends State<Teacher1> {
                   SizedBox(height: 80.0),
                   Column(
                       children: <Widget>[
-                        Image.asset('assets/earth.png'),
                         SizedBox(height: 16.0),
                         Text('Create a new account')
                       ]
@@ -318,6 +315,36 @@ class _TeacherState1 extends State<Teacher1> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 24.0),
+                  DropdownButton(
+                      value: _classSize,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('0-10'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('10-20'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('20-30'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('30+'),
+                            value: 3
+                        )
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _classSize = value;
+                        });
+                      }
+                  ),
+
+                  SizedBox(height: 24.0),
+                  Text('Grade Taught'),
 
                   DropdownButton(
                       value: _grade,
@@ -692,33 +719,197 @@ class _TeacherState1 extends State<Teacher1> {
                                     _endTimeAM = value;
                                   });
                                 }
-                            ),
-
-                            RaisedButton(
-                                color: Colors.blue,
-                                child: Text(
-                                  "Submit",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/home');
-                                }
-                            ),
-
-                            RaisedButton(
-                                color: Colors.blue,
-                                child: Text(
-                                  "Go Back",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                }
                             )
 
                           ]
 
                       )
+                  ),
+
+                  Form(
+                    key: formKeySki,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          child: MultiSelectFormField(
+                            autovalidate: false,
+                            titleText: 'Important Skills',
+                            validator: (value) {
+                              if (value == null || value.length == 0) {
+                                return 'Please select the skills you value the most';
+                              }
+                              return '';
+                            },
+                            dataSource: [
+                              {
+                                "display": "Leadership",
+                                "value": "Leadership",
+                              },
+                              {
+                                "display": "Communication",
+                                "value": "Communication",
+                              },
+                              {
+                                "display": "Time_Management",
+                                "value": "Time_Management",
+                              },
+                              {
+                                "display": "Creativity",
+                                "value": "Creativity",
+                              },
+                              {
+                                "display": "Empathy",
+                                "value": "Empathy",
+                              },
+                              {
+                                "display": "Teamwork",
+                                "value": "Teamwork",
+                              },
+                              {
+                                "display": "Reliability",
+                                "value": "Reliability",
+                              },
+                              {
+                                "display": "Initiative",
+                                "value": "Initiative",
+                              },
+                              {
+                                "display": "Confidence",
+                                "value": "Confidence",
+                              },
+                              {
+                                "display": "Integrity",
+                                "value": "Integrity",
+                              },
+                              {
+                                "display": "Enthusiasm",
+                                "value": "Enthusiasm",
+                              },
+                              {
+                                "display": "Flexibility",
+                                "value": "Flexibility",
+                              },{
+                                "display": "diligence",
+                                "value": "Diligence",
+                              },
+                              {
+                                "display": "Resourcefulness",
+                                "value": "Resourcefulness",
+                              },
+                              {
+                                "display": "Problem_Solving",
+                                "value": "Problem_Solving",
+                              }
+                            ],
+                            textField: 'display',
+                            valueField: 'value',
+                            okButtonLabel: 'OK',
+                            cancelButtonLabel: 'CANCEL',
+                            // required: true,
+                            hintText: 'Please choose one or more',
+                            //value: _skillsList,
+                            onSaved: (value) {
+                              if (value == null) return;
+                              setState(() {
+                                _skillsList = value;
+                              });
+                            },
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: RaisedButton(
+                            child: Text('Save'),
+                            onPressed: (){
+                            _saveSkillsForm();}
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Text('Preferred level of teaching experience from student volunteer'),
+                  DropdownButton(
+                      value: _experience,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('No Preference'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('1 year'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('2 years'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('3 years'),
+                            value: 3
+                        ),
+                        DropdownMenuItem(
+                            child: Text('3+ years'),
+                            value: 4
+                        )
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _experience = value;
+                        });
+                      }
+                  ),
+
+                  Text('Typical hours for student volunteer to serve per week'),
+                  DropdownButton(
+                      value: _hours,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('0-10 hours'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('10-20 hours'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('20-30 hours'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('30+ hours'),
+                            value: 3
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _hours = value;
+                        });
+                      }
+                  ),
+
+                  RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/home');
+                      }
+                  ),
+
+                  RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Go Back",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }
                   )
                 ]
             )
@@ -747,6 +938,7 @@ class _StudentState extends State<Student> {
     return user;
   }
 
+
   @override
   Widget build(BuildContext context){
     return Scaffold( // creates Scaffold
@@ -757,7 +949,6 @@ class _StudentState extends State<Student> {
                   SizedBox(height: 80.0),
                   Column(
                     children: <Widget>[
-                      Image.asset('assets/earth.png'), //display custom logo
                       SizedBox(height: 16.0), //spacing for aesthetics
                       Text('Create a new account'),
                     ],
@@ -799,23 +990,850 @@ class _StudentState extends State<Student> {
                           _passwordController.clear();
                         },
                       ),
-                      RaisedButton(
-                        color: Colors.blue,
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          if (_emailController.text.length != 0 && //TODO: implement auth
-                              _passwordController.text.length != 0) {
-                            _handleSignIn(_emailController, _passwordController).then((UserCredential user) => print(user))
-                                .catchError((e) => print(e));
-                            Navigator.pushNamed(context, '/home');
-                          }
-                        },
-                      )
                     ],
                   ),
+
+                  RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        _handleSignIn(_emailController, _passwordController).then((UserCredential user) => print(user))
+                            .catchError((e) => print(e));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Teacher1()),
+                        );
+                      }
+                  ),
+
+                  RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Go Back",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }
+                  )
+                ]
+
+            )
+        )
+    );
+  }
+}
+
+class Student1 extends StatefulWidget {
+  @override
+  _StudentState1 createState() => _StudentState1();
+}
+
+
+class _StudentState1 extends State<Student1> {
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _startTimeController = TextEditingController();
+  final _endTimeController = TextEditingController();
+  final _schoolController = TextEditingController();
+  final formKeySub = new GlobalKey<FormState>();
+  final formKeySki = new GlobalKey<FormState>();
+
+  String _timeZone = 'UTC';
+  String _startTime = '2012-02-27 00:00:00';
+  bool _startTimeAM = true;
+  String _endTime = '2012-02-27 00:00:00';
+  bool _endTimeAM = true;
+  double _classDuration = 0; // in minutes
+  int _gradeMin = 0;
+  int _gradeMax = 0;
+  int _classSize = 0;
+  List _subjectsList = [];
+  String _subjects = '';
+  List _skillsList = [];
+  String _skills = '';
+  int _experience = 0;
+  int _hours = 0;
+  bool _status = false;
+  String _firstName = '';
+  String _lastName = '';
+
+  String _handleSubmitted(String selectedGroup, String name, String bio) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection(selectedGroup)
+        .doc(name.split(" ").removeLast())
+        .set({
+      'name': name,
+      'bio': bio,
+    });
+    return name.split(" ").removeLast();
+  }
+
+  _saveSubjectsForm() {
+    var form = formKeySub.currentState;
+    if (form.validate()) {
+      form.save();
+      setState(() {
+        _subjects = _subjectsList.toString();
+      });
+    }
+  }
+
+  _saveSkillsForm(){
+    var form = formKeySki.currentState;
+    if (form.validate()) {
+      form.save();
+      setState(() {
+        _subjects = _subjectsList.toString();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold( // creates Scaffold
+        body: SingleChildScrollView(
+            child: Column(
+                children: <Widget>[
+                  SizedBox(height: 80.0),
+                  Column(
+                      children: <Widget>[
+                        SizedBox(height: 16.0),
+                        Text('Create a new account')
+                      ]
+                  ),
+
+                  TextField(
+                    controller: _firstNameController,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: "First Name",
+                    ),
+                  ),
+
+                  TextField(
+                    controller: _lastNameController,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: "Last Name",
+                    ),
+                  ),
+                  SizedBox(height: 24.0),
+
+                  ButtonBar(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("Clear"),
+                        onPressed: () {
+                          _firstNameController.clear();
+                          _lastNameController.clear();
+                        },
+                      ),
+                    ],
+                  ),
+
+
+                  SizedBox(height: 24.0),
+                  TextField(
+                    controller: _schoolController,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: "School Name",
+                    ),
+                  ),
+
+                  SizedBox(height: 24.0),
+
+                  ButtonBar(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("Clear"),
+                        onPressed: () {
+                          _schoolController.clear();
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24.0),
+                  DropdownButton(
+                      value: _classSize,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('0-10'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('10-20'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('20-30'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('30+'),
+                            value: 3
+                        )
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _classSize = value;
+                        });
+                      }
+                  ),
+
+                  SizedBox(height: 24.0),
+                  Text('Lowest preferred grade to teach'),
+
+                  DropdownButton(
+                      value: _gradeMin,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('K'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('1'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('2'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('3'),
+                            value: 3
+                        ),
+                        DropdownMenuItem(
+                            child: Text('4'),
+                            value: 4
+                        ),
+                        DropdownMenuItem(
+                            child: Text('5'),
+                            value: 5
+                        ),
+                        DropdownMenuItem(
+                            child: Text('6'),
+                            value: 6
+                        ),
+                        DropdownMenuItem(
+                            child: Text('7'),
+                            value: 7
+                        ),
+                        DropdownMenuItem(
+                            child: Text('8'),
+                            value: 8
+                        ),
+                        DropdownMenuItem(
+                            child: Text('9'),
+                            value: 9
+                        ),
+                        DropdownMenuItem(
+                            child: Text('10'),
+                            value: 10
+                        ),
+                        DropdownMenuItem(
+                            child: Text('11'),
+                            value: 11
+                        ),
+                        DropdownMenuItem(
+                            child: Text('12'),
+                            value: 12
+                        )
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _gradeMin = value;
+                        });
+                      }
+                  ),
+
+            SizedBox(height: 24.0),
+            Text('Highest preferred grade to teach'),
+            DropdownButton(
+                value: _gradeMax,
+                items: [
+                  DropdownMenuItem(
+                      child: Text('K'),
+                      value: 0
+                  ),
+                  DropdownMenuItem(
+                      child: Text('1'),
+                      value: 1
+                  ),
+                  DropdownMenuItem(
+                      child: Text('2'),
+                      value: 2
+                  ),
+                  DropdownMenuItem(
+                      child: Text('3'),
+                      value: 3
+                  ),
+                  DropdownMenuItem(
+                      child: Text('4'),
+                      value: 4
+                  ),
+                  DropdownMenuItem(
+                      child: Text('5'),
+                      value: 5
+                  ),
+                  DropdownMenuItem(
+                      child: Text('6'),
+                      value: 6
+                  ),
+                  DropdownMenuItem(
+                      child: Text('7'),
+                      value: 7
+                  ),
+                  DropdownMenuItem(
+                      child: Text('8'),
+                      value: 8
+                  ),
+                  DropdownMenuItem(
+                      child: Text('9'),
+                      value: 9
+                  ),
+                  DropdownMenuItem(
+                      child: Text('10'),
+                      value: 10
+                  ),
+                  DropdownMenuItem(
+                      child: Text('11'),
+                      value: 11
+                  ),
+                  DropdownMenuItem(
+                      child: Text('12'),
+                      value: 12
+                  )
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    _gradeMax = value;
+                  });
+                }
+            ),
+
+                  SizedBox(height: 24.0),
+
+                  Form(
+                      key: formKeySub,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                                padding: EdgeInsets.all(16),
+                                child: MultiSelectFormField(
+                                    autovalidate: false,
+                                    titleText: 'Subjects you can teach',
+                                    validator: (value) {
+                                      if (value == null || value.length == 0) {
+                                        return 'Please select all that apply';
+                                      }
+                                      return '';
+                                    },
+                                    dataSource: [
+                                      {
+                                        "display": "Science",
+                                        "value": "Science"
+                                      },
+                                      {
+                                        "display": "Math",
+                                        "value": "Math"
+                                      },
+                                      {
+                                        "display": "English/Language_Arts",
+                                        "value": "English/Language_Arts"
+                                      },
+                                      {
+                                        "display": "Social_Studies",
+                                        "value": "Social_studies"
+                                      },
+                                      {
+                                        "display": "Physical_Education",
+                                        "value": "Physical_Education"
+                                      },
+                                      {
+                                        "display": "Visual_Arts",
+                                        "value": "Visual_Arts"
+                                      },
+                                      {
+                                        "display": "Music",
+                                        "value": "Music"
+                                      }
+                                    ],
+                                    textField: 'display',
+                                    valueField: 'value',
+                                    okButtonLabel: 'OK',
+                                    cancelButtonLabel: 'CANCEL',
+                                    hintText: 'Please select all that apply',
+                                    //value: _subjectsList,
+                                    onSaved: (value) {
+                                      if (value == null) return;
+                                      setState(() {
+                                        _subjectsList = value;
+                                      });
+                                      print(_subjectsList);
+                                    }
+                                )
+                            ),
+
+                            Container(
+                                padding: EdgeInsets.all(8),
+                                child: RaisedButton(
+                                    color: Colors.blue,
+                                    child: Text(
+                                      "Save",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    onPressed: () {
+                                      _saveSubjectsForm();
+                                    }
+                                )
+                            ),
+
+                            SizedBox(height: 40.0),
+
+
+                            Text('Choose time zone'),
+                            SizedBox(height: 20.0),
+
+                            DropdownButton( // choose from any time zone
+                                value: _timeZone,
+                                items: [
+                                  DropdownMenuItem(
+                                      child: Text("GMT"),
+                                      value: 'GMT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("UTC"),
+                                      value: 'UTC'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("ECT"),
+                                      value: 'ECT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("EET"),
+                                      value: 'EET'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("ART"),
+                                      value: 'ART'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("EAT"),
+                                      value: 'EAT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("MET"),
+                                      value: 'MET'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("NET"),
+                                      value: 'NET'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("PLT"),
+                                      value: 'PLT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("IST"),
+                                      value: 'IST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("BST"),
+                                      value: 'BST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("VST"),
+                                      value: 'VST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("CTT"),
+                                      value: 'CTT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("JST"),
+                                      value: 'JST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("ACT"),
+                                      value: 'ACT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("AET"),
+                                      value: 'AET'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("SST"),
+                                      value: 'SST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("NST"),
+                                      value: 'NST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("MIT"),
+                                      value: 'MIT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("HST"),
+                                      value: 'HST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("AST"),
+                                      value: 'AST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("PST"),
+                                      value: 'PST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("PNT"),
+                                      value: 'PNT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("MST"),
+                                      value: 'MST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("CST"),
+                                      value: 'CST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("EST"),
+                                      value: 'EST'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("IET"),
+                                      value: 'IET'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("PRT"),
+                                      value: 'PRT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("CNT"),
+                                      value: 'CNT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("AGT"),
+                                      value: 'AGT'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("BET"),
+                                      value: 'BET'
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text("CAT"),
+                                      value: 'CAT'
+                                  )
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _timeZone = value;
+                                  });
+                                }),
+
+                            SizedBox(height: 12.0),
+                            Text('Earliest preferred class start time'),
+                            SizedBox(height: 20.0),
+
+                            Column(
+                                children: <Widget>[
+                                  TextField(
+                                    controller: _startTimeController,
+                                    autofocus: true,
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      labelText: "Class Start Time (hh:mm format)",
+                                    ),
+                                  ),
+                                  ButtonBar(
+                                    children: <Widget>[
+                                      FlatButton(
+                                        child: Text("Clear"),
+                                        onPressed: () {
+                                          _startTimeController.clear();
+                                        },
+                                      ),
+                                    ],
+                                  )
+
+                                ]
+                            ),
+                            DropdownButton(
+                                value: _startTimeAM,
+                                items: [
+                                  DropdownMenuItem(
+                                      child: Text('AM'),
+                                      value: true
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text('PM'),
+                                      value: false
+                                  )
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _startTimeAM = value;
+                                  });
+                                }
+                            ),
+                            SizedBox(height: 20.0),
+                            Text('Latest preferred class end time'),
+                            SizedBox(height: 20.0),
+
+                            Column(
+                                children: <Widget>[
+                                  TextField(
+                                    controller: _endTimeController,
+                                    autofocus: true,
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      labelText: "Class End Time (hh:mm format)",
+                                    ),
+                                  ),
+                                  ButtonBar(
+                                    children: <Widget>[
+                                      FlatButton(
+                                        child: Text("Clear"),
+                                        onPressed: () {
+                                          _endTimeController.clear();
+                                        },
+                                      ),
+                                    ],
+                                  )
+
+                                ]
+                            ),
+                            DropdownButton(
+                                value: _endTimeAM,
+                                items: [
+                                  DropdownMenuItem(
+                                      child: Text('AM'),
+                                      value: true
+                                  ),
+                                  DropdownMenuItem(
+                                      child: Text('PM'),
+                                      value: false
+                                  )
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _endTimeAM = value;
+                                  });
+                                }
+                            )
+
+                          ]
+
+                      )
+                  ),
+
+                  Form(
+                    key: formKeySki,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          child: MultiSelectFormField(
+                            autovalidate: false,
+                            titleText: 'Important Skills',
+                            validator: (value) {
+                              if (value == null || value.length == 0) {
+                                return 'Skills you have mastered (select all that apply)';
+                              }
+                              return '';
+                            },
+                            dataSource: [
+                              {
+                                "display": "Leadership",
+                                "value": "Leadership",
+                              },
+                              {
+                                "display": "Communication",
+                                "value": "Communication",
+                              },
+                              {
+                                "display": "Time_Management",
+                                "value": "Time_Management",
+                              },
+                              {
+                                "display": "Creativity",
+                                "value": "Creativity",
+                              },
+                              {
+                                "display": "Empathy",
+                                "value": "Empathy",
+                              },
+                              {
+                                "display": "Teamwork",
+                                "value": "Teamwork",
+                              },
+                              {
+                                "display": "Reliability",
+                                "value": "Reliability",
+                              },
+                              {
+                                "display": "Initiative",
+                                "value": "Initiative",
+                              },
+                              {
+                                "display": "Confidence",
+                                "value": "Confidence",
+                              },
+                              {
+                                "display": "Integrity",
+                                "value": "Integrity",
+                              },
+                              {
+                                "display": "Enthusiasm",
+                                "value": "Enthusiasm",
+                              },
+                              {
+                                "display": "Flexibility",
+                                "value": "Flexibility",
+                              },{
+                                "display": "diligence",
+                                "value": "Diligence",
+                              },
+                              {
+                                "display": "Resourcefulness",
+                                "value": "Resourcefulness",
+                              },
+                              {
+                                "display": "Problem_Solving",
+                                "value": "Problem_Solving",
+                              }
+                            ],
+                            textField: 'display',
+                            valueField: 'value',
+                            okButtonLabel: 'OK',
+                            cancelButtonLabel: 'CANCEL',
+                            // required: true,
+                            hintText: 'Please choose one or more',
+                            //value: _skillsList,
+                            onSaved: (value) {
+                              if (value == null) return;
+                              setState(() {
+                                _skillsList = value;
+                              });
+                            },
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: RaisedButton(
+                              child: Text('Save'),
+                              onPressed: (){
+                                _saveSkillsForm();}
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Text('Years of teaching experience'),
+                  DropdownButton(
+                      value: _experience,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('No Preference'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('1 year'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('2 years'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('3 years'),
+                            value: 3
+                        ),
+                        DropdownMenuItem(
+                            child: Text('3+ years'),
+                            value: 4
+                        )
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _experience = value;
+                        });
+                      }
+                  ),
+
+                  SizedBox(height: 40.0),
+                  Text('Average hours you can contribute per week'),
+                  DropdownButton(
+                      value: _hours,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('0-10 hours'),
+                            value: 0
+                        ),
+                        DropdownMenuItem(
+                            child: Text('10-20 hours'),
+                            value: 1
+                        ),
+                        DropdownMenuItem(
+                            child: Text('20-30 hours'),
+                            value: 2
+                        ),
+                        DropdownMenuItem(
+                            child: Text('30+ hours'),
+                            value: 3
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _hours = value;
+                        });
+                      }
+                  ),
+
+                  SizedBox(height: 24.0),
+                  Text('Do you already have a job/volunteer position?'),
+                  DropdownButton(
+                      value: _status,
+                      items: [
+                        DropdownMenuItem(
+                            child: Text('No'),
+                            value: false
+                        ),
+                        DropdownMenuItem(
+                            child: Text('Yes'),
+                            value: true
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _status = value;
+                        });
+                      }
+                  ),
+
+                  RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/home');
+                      }
+                  ),
+
                   RaisedButton(
                       color: Colors.blue,
                       child: Text(
@@ -832,4 +1850,3 @@ class _StudentState extends State<Student> {
     );
   }
 }
-
